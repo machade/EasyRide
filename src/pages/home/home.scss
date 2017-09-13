@@ -1,0 +1,25 @@
+page-home {
+    ion-icon{
+        position: center !important;
+        font-size: 400%;
+    }
+    .Logo{
+        width: 100%;
+    }
+    .button {
+        align-content: center;
+        height: 100%;
+        width: 65%;
+        border-radius: 15%;
+        padding: 2% 10% 2% 10%;
+    }   
+    .texto > .button-inner {
+        flex-direction: column;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: #49516F; 
+        text-transform: capitalize;  
+        padding-bottom: 2%;
+    }
+
+
+}

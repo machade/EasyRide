@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Cadastro
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background: lightgrey">
+
+  <ion-list>
+    
+      <ion-item>
+        <ion-label floating>Nome</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirmar E-mail</ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label floating>Tipo de Usuário</ion-label>
+        <ion-select [(ngModel)]="usuario">
+          <ion-option value="p">Passageiro</ion-option>
+          <ion-option value="m">Motorista</ion-option>
+        </ion-select>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label floating>CNH</ion-label>
+        <ion-input type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Campus</ion-label>
+        <ion-select [(ngModel)]="campus">
+          <ion-option value="c">Cidade Universitária</ion-option>
+          <ion-option value="t">Trujilo</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Confirmar Senha</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    
+    </ion-list>
+
+</ion-content>
