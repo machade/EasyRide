@@ -3,6 +3,13 @@ page-home {
         position: center !important;
         font-size: 400%;
     }
+    .pane {
+        background: url("../assets/img/d.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+
     .Logo{
         width: 100%;
     }
@@ -10,16 +17,35 @@ page-home {
         align-content: center;
         height: 100%;
         width: 65%;
-        border-radius: 15%;
+        border-radius: 10%;
         padding: 2% 10% 2% 10%;
+        background-color: rgba(0,0,0,.5);
     }   
     .texto > .button-inner {
         flex-direction: column;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        color: #49516F; 
+        color: #E2E8DD; 
         text-transform: capitalize;  
         padding-bottom: 2%;
     }
+
+    .page-bg {
+        background: url("../assets/img/d.jpg") no-repeat center center fixed;
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+      }
 
 
 }

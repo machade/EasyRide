@@ -38,10 +38,11 @@ $colors: (
   secondary:  #697268,
   danger:     #f53d3d,
   light:      #E2E8DD,
-  dark:       #222
+  dark:       #222,
+  tabs: rgba(0,0,0,.5)
 );
 
-$toolbar-md-background:                   color($colors, primary);
+$toolbar-md-background:                   color($colors, tabs);
 
 // App iOS Variables
 // --------------------------------------------------
