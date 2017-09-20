@@ -6,12 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Rotas</ion-title>
-  </ion-navbar>
 
 </ion-header>
 
-<ion-content aling="center" style="background: lightgrey">
+<ion-content class="card-background-page">
+  <ion-card color="primary" (click)="goToCadastroRota()">
+    <img src="./../../assets/img/CadastrarRota.png"/>
+    <div class="card-title" align="center" style="font-size:20px">Cadastrar Rotas</div>
+  </ion-card>
   
+  <ion-card color="primary">
+    <img src="./../../assets/img/ConsultarRotas.png"/>
+    <div class="card-title" align="center"  style="font-size:20px">Gerenciar Rotas</div>
+  </ion-card>
+
 </ion-content>

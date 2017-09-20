@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
+import {CadastroRotaPage} from '../cadastro-rota/cadastro-rota';
 /**
  * Generated class for the Rotas page.
  *
@@ -18,6 +19,10 @@ export class Rotas {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Rotas');
+  }
+  
+  goToCadastroRota(){
+    this.navCtrl.push(CadastroRotaPage);
   }
 
 }
