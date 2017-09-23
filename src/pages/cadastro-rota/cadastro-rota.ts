@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Modal,ModalController} from 'ionic-angular';
+import {ModalRotaPage} from '../modal-rota/modal-rota';
 
 /**
  * Generated class for the CadastroRotaPage page.
@@ -15,11 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CadastroRotaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroRotaPage');
   }
 
+  insert(){
+    let modal =  this.modalCtrl.create(ModalRotaPage);
+    modal.present();
+  }
 }
