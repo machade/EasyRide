@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Modal,ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController} from 'ionic-angular';
 import {ModalRotaPage} from '../modal-rota/modal-rota';
 
 /**
