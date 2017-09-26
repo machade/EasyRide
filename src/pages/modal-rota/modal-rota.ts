@@ -43,7 +43,7 @@ export class ModalRotaPage {
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
- 
+      console.log(latLng);
     }, (err) => {
       console.log(err);
     });
