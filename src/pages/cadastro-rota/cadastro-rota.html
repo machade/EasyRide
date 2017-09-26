@@ -9,25 +9,24 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding>  
     <ion-item>
-        <ion-label floating>Tipo de Viagem</ion-label>
-        <ion-select [(ngModel)]="tipoRota">
-          <ion-option value="ida">Ida</ion-option>
-          <ion-option value="volta">Volta</ion-option>
+        <ion-label inline>Tipo de Viagem</ion-label>
+        <ion-select [(ngModel)]="cadastroRota.tipoRota">
+          <ion-option *ngFor="let rota of tipo_rota">{{rota.descricao}}</ion-option>
         </ion-select>
     </ion-item>
     <ion-item>
         <ion-label inline>Horário de saída</ion-label>
-        <ion-input type="time"></ion-input>
+        <ion-input type="time"  [(ngModel)]="cadastroRota.hora"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label inline1>Quantidade de Lugares</ion-label>
-        <ion-input type="number"></ion-input>
+        <ion-input type="number" [(ngModel)]="cadastroRota.qtdeLugares"></ion-input>
     </ion-item>
     <ion-list>
         <ion-item>
-          <ion-label>Locais Cadastrados</ion-label>
+          <ion-label inline>Locais Cadastrados</ion-label>
           <ion-select [(ngModel)]="Origem">
             <ion-option value="1">Casa</ion-option>
             <ion-option value="2">Trabalho</ion-option>
@@ -35,5 +34,5 @@
           </ion-select>
         </ion-item>
       </ion-list>
-    <button ion-button block (click)="insert()" outline>Inserir Novo Local</button>
+    <button ion-button block (click)="insert(cadastroRota)" outline>Inserir Novo Local</button>
 </ion-content>
