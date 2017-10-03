@@ -43,19 +43,19 @@ export class ModalRotaPage {
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      console.log(latLng);
     }, (err) => {
       console.log(err);
     });
  
   }
 
-  addMarker(){
+  addMarker(position){
     
+     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
      let marker = new google.maps.Marker({
        map: this.map,
        animation: google.maps.Animation.DROP,
-       position: this.map.getCenter()
+       position: this.map.getCenter(latLng)
      });
     
      let content = "<h4>Information!</h4>";          

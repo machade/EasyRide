@@ -6,13 +6,12 @@
 -->
 <ion-header>
   <button ion-button outline (click)="dismiss()" color="cancel">cancelar</button>
-  <button ion-button outline (click)="submit()" color="submit">Salvar</button>
+  <button ion-button outline (click)="submit()" color="submit" end>Salvar</button>
   <ion-item>
-      <ion-label inline>Localização</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" placeholder="Pesquisar"></ion-input>
   </ion-item>
   <ion-buttons end>
-      <button ion-button (click)="addMarker()"><ion-icon name="ios-locate-outline"></ion-icon></button>      
+      <button ion-button (click)="loadMap()"><ion-icon name="ios-locate-outline"></ion-icon></button>      
       <button ion-button (click)="addMarker()"><ion-icon name="ios-search-outline"></ion-icon></button>
   </ion-buttons> 
 </ion-header>
