@@ -49,14 +49,12 @@ export class ModalRotaPage {
  
   }
 
-  addMarker(position){
-    
-     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-     let marker = new google.maps.Marker({
+  addMarker(){
+      let marker = new google.maps.Marker({
        map: this.map,
        animation: google.maps.Animation.DROP,
-       position: this.map.getCenter(latLng)
-     });
+       position: this.map.getCenter()
+    });
     
      let content = "<h4>Information!</h4>";          
     
@@ -66,13 +64,13 @@ export class ModalRotaPage {
 
    addInfoWindow(marker, content){
     
-     let infoWindow = new google.maps.InfoWindow({
-       content: content
-     });
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
     
-     google.maps.event.addListener(marker, 'click', () => {
-       infoWindow.open(this.map, marker);
-     });
+    google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
     
    }
 }
