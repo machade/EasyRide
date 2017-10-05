@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,ModalController} from 'ionic-angula
 import {ModalRotaPage} from '../modal-rota/modal-rota';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import {CadastroRota} from '../../providers/cadastro-rota';
 
 
 /**
@@ -19,15 +20,16 @@ import 'rxjs/Rx';
 })
 export class CadastroRotaPage {
 
-  private tipo_rota:Array<any>;
-  cadastroRota = {
+  private tipo_rota:Array<any> = [];
+  Rota = {
     tipoRota: '',
     hora: '',
     qtdeLugares: '',
     localPartida: ''
   }
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,
-    public http: Http) {
+    public http: Http, private cadastroRota: CadastroRota) {
       this.getRota();
   }
   posts: any;
@@ -42,10 +44,8 @@ export class CadastroRotaPage {
   }
 
   getRota(){
-    this.tipo_rota = [];
-    this.http.get('http://localhost:3000/tipo_rota').map(res => res.json()).subscribe(data => {
+    this.cadastroRota.getRotas().subscribe(data => {
       this.tipo_rota = data;
-      console.log(this.tipo_rota);
     });  
   }
 }
