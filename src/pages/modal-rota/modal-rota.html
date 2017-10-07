@@ -33,5 +33,11 @@
 </ion-header>
 
 <ion-content padding>
-    <div #map id="map"></div>  
+    <div class="form-group">
+        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+    </div>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+
 </ion-content>

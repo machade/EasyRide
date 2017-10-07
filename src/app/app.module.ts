@@ -5,6 +5,8 @@ import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpModule } from '@angular/http';
 import {CadastroRota} from '../providers/cadastro-rota';
+import { AgmCoreModule } from '@agm/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -30,7 +32,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyD6bNZvN0ku4bjfAbyajAdQJ-6sYBS4XFI",
+      libraries: ["places"]
+    }),
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

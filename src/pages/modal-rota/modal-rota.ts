@@ -1,6 +1,9 @@
-import { Component,ViewChild, ElementRef } from '@angular/core';
+import { Component,ViewChild, ElementRef,OnInit,NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController, } from 'ionic-angular';
+import { FormControl } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 /**
  * Generated class for the ModalRotaPage page.
@@ -16,61 +19,65 @@ declare var google;
 })
 export class ModalRotaPage {
 
-  @ViewChild('map') mapElement: ElementRef;
-  map: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController,public geolocation: Geolocation) {
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
+
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
+  
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public viewCtrl: ViewController,
+              public geolocation: Geolocation,
+              private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone) {
 
   }
+  ngOnInit() {
+    //set google maps defaults
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
 
-  dismiss() {
-    this.viewCtrl.dismiss();
+    //create search FormControl
+    this.searchControl = new FormControl();
+
+    //set current position
+    this.setCurrentPosition();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
   }
 
-  ionViewDidLoad(){
-    this.loadMap();
+  private setCurrentPosition() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
   }
- 
-  loadMap(){
- 
-    this.geolocation.getCurrentPosition().then((position) => {
- 
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
-      let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
- 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    }, (err) => {
-      console.log(err);
-    });
- 
-  }
-
-  addMarker(){
-      let marker = new google.maps.Marker({
-       map: this.map,
-       animation: google.maps.Animation.DROP,
-       position: this.map.getCenter()
-    });
-    
-     let content = "<h4>Information!</h4>";          
-    
-     this.addInfoWindow(marker, content);
-    
-   }
-
-   addInfoWindow(marker, content){
-    
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-    
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
-    
-   }
 }
