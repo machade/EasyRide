@@ -80,11 +80,7 @@ export class ModalRotaPage {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-<<<<<<< HEAD
-        this.zoom = 16;
-=======
         this.zoom =15;
->>>>>>> 18011d2713e3b5f5d619cf0c05c00121b9307d8e
       });
     }
   }
