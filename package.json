@@ -12,6 +12,10 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@agm/core": "^1.0.0-beta.1",
+>>>>>>> 18011d2713e3b5f5d619cf0c05c00121b9307d8e
     "@angular/common": "4.1.3",
     "@angular/compiler": "4.1.3",
     "@angular/compiler-cli": "4.1.3",
