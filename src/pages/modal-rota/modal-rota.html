@@ -24,8 +24,8 @@
         </ion-col>
         <ion-col>
             <ion-buttons end>
-            <button ion-button (click)="loadMap()" outline round><ion-icon name="ios-locate-outline"></ion-icon></button>        
-            <button ion-button (click)="addMarker()" outline round><ion-icon name="ios-search-outline"></ion-icon></button>       
+            <button ion-button outline round><ion-icon name="ios-locate-outline"></ion-icon></button>        
+            <button ion-button outline round><ion-icon name="ios-search-outline"></ion-icon></button>       
             </ion-buttons>
         </ion-col>
     </ion-row>
@@ -34,7 +34,7 @@
 
 <ion-content padding>
     <div class="form-group">
-        <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+        <input placeholder="Procurar por local" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
     </div>
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
