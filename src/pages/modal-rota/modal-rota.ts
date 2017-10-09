@@ -24,6 +24,7 @@ export class ModalRotaPage {
   public searchControl: FormControl;
   public zoom: number;
 
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
   
@@ -34,6 +35,9 @@ export class ModalRotaPage {
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone) {
 
+  }
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
   ngOnInit() {
     //set google maps defaults
@@ -67,7 +71,7 @@ export class ModalRotaPage {
           this.longitude = place.geometry.location.lng();
           this.zoom = 15;
         });
-      });
+      });      
     });
   }
 

@@ -18,23 +18,13 @@
             </div>
         </ion-col>
     </ion-row>
-    <ion-row>
-        <ion-col>
-            <ion-input type="text"  placeholder="Pesquisar"></ion-input>
-        </ion-col>
-        <ion-col>
-            <ion-buttons end>
-            <button ion-button outline round><ion-icon name="ios-locate-outline"></ion-icon></button>        
-            <button ion-button outline round><ion-icon name="ios-search-outline"></ion-icon></button>       
-            </ion-buttons>
-        </ion-col>
-    </ion-row>
+
 </ion-grid>
 </ion-header>
 
 <ion-content padding>
     <div class="form-group">
-        <input placeholder="Procurar por local" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+        <input placeholder="Procurar por local" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="input-maps form-control" #search>
     </div>
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
