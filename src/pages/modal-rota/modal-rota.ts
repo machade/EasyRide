@@ -75,7 +75,7 @@ export class ModalRotaPage {
     });
   }
 
-  private setCurrentPosition() {
+  setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
