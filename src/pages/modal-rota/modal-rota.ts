@@ -42,8 +42,8 @@ export class ModalRotaPage {
   ngOnInit() {
     //set google maps defaults
     this.zoom = 15;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
+    this.latitude = -23.5062;
+    this.longitude = -47.4559;
 
     //create search FormControl
     this.searchControl = new FormControl();
