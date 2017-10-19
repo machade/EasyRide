@@ -12,6 +12,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import {PesquisaCaronaPage} from '../pages/pesquisa-carona/pesquisa-carona';
 import { Rotas } from '../pages/rotas/rotas';
 import {CadastroRotaPage} from '../pages/cadastro-rota/cadastro-rota';
 import {ModalRotaPage} from '../pages/modal-rota/modal-rota';
@@ -27,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     Rotas,
     CadastroRotaPage,
-    ModalRotaPage
+    ModalRotaPage,
+    PesquisaCaronaPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     Rotas,
     CadastroRotaPage,
-    ModalRotaPage
+    ModalRotaPage,
+    PesquisaCaronaPage
   ],
   providers: [
     StatusBar,
