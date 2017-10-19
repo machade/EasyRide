@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 import {CadastroRotaPage} from '../cadastro-rota/cadastro-rota';
+import { GerenciarRotaPage } from '../gerenciar-rota/gerenciar-rota';
 /**
  * Generated class for the Rotas page.
  *
@@ -24,5 +25,7 @@ export class Rotas {
   goToCadastroRota(){
     this.navCtrl.push(CadastroRotaPage);
   }
-
+  goToGerenciarRotaPage(){
+    this.navCtrl.push(GerenciarRotaPage);
+  }
 }
