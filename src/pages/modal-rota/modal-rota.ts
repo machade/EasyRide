@@ -1,5 +1,5 @@
 import { Component,ViewChild, ElementRef,OnInit,NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams,ViewController, } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController, AlertController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 import { } from 'googlemaps';
@@ -33,7 +33,8 @@ export class ModalRotaPage {
               public viewCtrl: ViewController,
               public geolocation: Geolocation,
               private mapsAPILoader: MapsAPILoader,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              public alertCtrl: AlertController) {
 
   }
   dismiss() {
@@ -83,5 +84,28 @@ export class ModalRotaPage {
         this.zoom =15;
       });
     }
+  }
+
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Confirmar Cadastro');
+    alert.setMessage('Insira abaixo a descrição para o novo local a ser cadastrado.');
+
+
+    alert.addInput({
+      type: 'text',
+      label: '',
+      value: '',
+      checked: true
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.dismiss();
+      }
+    });
+    alert.present();
   }
 }
