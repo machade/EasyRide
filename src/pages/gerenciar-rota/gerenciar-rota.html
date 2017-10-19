@@ -4,15 +4,22 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>GerenciarRotaPage</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
+    <ion-card>
+        <ion-card-header inline>
+          Casa
+        </ion-card-header>
+        <ion-card-content>
+          Localização: TESTE  
+        <ion-buttons end>
+            <button ion-button color="danger" outline icon-only color="cancel">
+              <ion-icon name='close' is-active="true"></ion-icon>
+            </button>
+            <button ion-button color="danger" outline icon-only color="submit">
+              <ion-icon name='md-create' is-active="true"></ion-icon>
+            </button>
+        </ion-buttons>          
+        </ion-card-content>
+      </ion-card>
 
 </ion-content>
