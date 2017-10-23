@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {Rotas} from '../rotas/rotas';
 import { PesquisaCaronaPage } from '../pesquisa-carona/pesquisa-carona';
+import { IniciarTrajetoPage } from '../iniciar-trajeto-page/iniciar-trajeto-page'
 
 @Component({
   selector: 'page-home',
@@ -20,5 +21,9 @@ export class HomePage {
 
   goToPesquisaCarona(){
     this.navCtrl.push(PesquisaCaronaPage);
+  }
+
+  goToIniciarTrajeto(){
+    this.navCtrl.push(IniciarTrajetoPage);
   }
 }
