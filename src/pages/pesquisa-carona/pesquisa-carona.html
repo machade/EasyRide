@@ -4,15 +4,48 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>PesquisaCaronaPage</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="height:40px">
+        <ion-list >
+          <ion-item>
+            <ion-label inline>Selecionar Local</ion-label>
+            <ion-select >
+              <ion-option value="1">Casa</ion-option>
+              <ion-option value="2">Trabalho</ion-option>
+              <ion-option value="3">Casa do amigo</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-buttons end>
+          <button ion-button outline round><ion-icon name="ios-locate-outline"></ion-icon></button>                
+          <button ion-button outline round><ion-icon name="ios-search"></ion-icon></button>   
+        </ion-buttons>             
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+  <ion-card>
+    <ion-card-header inline>
+      Nome Motorista
+    </ion-card-header>
+    <ion-card-content>
+      <li>Distancia: XXX
+      <li>Hora de saída : XXX
+    <ion-buttons end>
+        <button ion-button color="submit" outline icon-only>
+          <ion-icon name='ios-add-outline' is-active="true"></ion-icon>
+        </button>
+        <button ion-button color="primary" outline icon-only>
+          <ion-icon name='ios-chatboxes-outline' is-active="true"></ion-icon>
+        </button>
+    </ion-buttons>          
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
