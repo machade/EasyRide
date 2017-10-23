@@ -99,9 +99,9 @@ export class ModalRotaPage {
       checked: true
     });
 
-    alert.addButton('Cancel');
+    alert.addButton('Cancelar');
     alert.addButton({
-      text: 'OK',
+      text: 'Confirmar',
       handler: data => {
         this.dismiss();
       }

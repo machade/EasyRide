@@ -36,9 +36,9 @@ export class IniciarTrajetoPage {
       value: 'value2'
     });
 
-    alert.addButton('Cancel');
+    alert.addButton('Cancelar');
     alert.addButton({
-      text: 'Okay',
+      text: 'Confirmar',
       handler: data => {
         console.log('Checkbox data:', data);
         this.testCheckboxOpen = false;
