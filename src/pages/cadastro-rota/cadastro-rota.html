@@ -26,8 +26,16 @@
     </ion-item>
     <ion-list>
       <ion-item>
-        <ion-label inline>Locais Cadastrados</ion-label>
+        <ion-label inline>Origem</ion-label>
         <ion-select [(ngModel)]="Rota.origem">
+          <ion-option *ngFor="let origem of id_origem">{{origem.id}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label inline>Destino</ion-label>
+        <ion-select [(ngModel)]="Rota.destino">
           <ion-option value="1">Casa</ion-option>
           <ion-option value="2">Trabalho</ion-option>
           <ion-option value="3">Casa do amigo</ion-option>

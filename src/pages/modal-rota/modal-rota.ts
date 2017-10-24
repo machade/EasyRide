@@ -80,6 +80,7 @@ export class ModalRotaPage {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
+        console.log(this.latitude);
         this.longitude = position.coords.longitude;
         this.zoom =15;
       });

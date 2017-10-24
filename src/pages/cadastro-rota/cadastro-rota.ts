@@ -21,9 +21,11 @@ import {CadastroRota} from '../../providers/cadastro-rota';
 export class CadastroRotaPage {
 
   private tipo_rota:Array<any> = [];
+  private id_origem:Array<any> = [];
   Rota = {
     tipoRota: '',
     hora: '',
+    origem:'',
     qtdeLugares: '',
     localPartida: ''
   }
@@ -49,6 +51,11 @@ export class CadastroRotaPage {
   getRota(){
     this.cadastroRota.getRotas().subscribe(data => {
       this.tipo_rota = data;
+    });  
+  }
+  getOrigem(){
+    this.cadastroRota.getOrigem().subscribe(data => {
+      this.id_origem = data;
     });  
   }
 }
