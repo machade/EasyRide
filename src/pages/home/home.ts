@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController} from 'ionic-angular';
 import {Rotas} from '../rotas/rotas';
 import { PesquisaCaronaPage } from '../pesquisa-carona/pesquisa-carona';
-import { IniciarTrajetoPage } from '../iniciar-trajeto-page/iniciar-trajeto-page'
+import { IniciarTrajetoPage } from '../iniciar-trajeto-page/iniciar-trajeto-page';
+import {ModalRotaPage} from '../modal-rota/modal-rota';
+
 
 @Component({
   selector: 'page-home',
@@ -11,7 +13,8 @@ import { IniciarTrajetoPage } from '../iniciar-trajeto-page/iniciar-trajeto-page
 export class HomePage {
 
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+              public modalCtrl: ModalController) {
 
   }
 
@@ -25,5 +28,10 @@ export class HomePage {
 
   goToIniciarTrajeto(){
     this.navCtrl.push(IniciarTrajetoPage);
+  }
+  
+  goToLocais(){
+    let modal =  this.modalCtrl.create(ModalRotaPage);
+    modal.present();
   }
 }
