@@ -58,7 +58,6 @@ export class CadastroRotaPage {
   getDestUniversidade(){
     this.cadastroRota.getDestUniversidade().subscribe(data => {
       this.id_universidade = data;
-      console.log(this.id_universidade);
     });  
   }
 }

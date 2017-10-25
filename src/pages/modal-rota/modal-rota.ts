@@ -24,6 +24,10 @@ export class ModalRotaPage {
   public searchControl: FormControl;
   public zoom: number;
 
+  localStorage = {
+    descricao: '',
+    localizacao: ''
+  }
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -80,7 +84,6 @@ export class ModalRotaPage {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
-        console.log(this.latitude);
         this.longitude = position.coords.longitude;
         this.zoom =15;
       });
@@ -105,8 +108,13 @@ export class ModalRotaPage {
       text: 'Confirmar',
       handler: data => {
         this.dismiss();
+        let localizacao = 'point('+this.latitude+','+this.longitude+')';
+        console.log(localizacao);
       }
     });
     alert.present();
+    console.log(this.longitude);
+    console.log(this.latitude);
+    
   }
 }
