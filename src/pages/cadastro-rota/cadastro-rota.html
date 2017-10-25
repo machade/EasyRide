@@ -13,7 +13,7 @@
     <ion-item>
         <ion-label inline>Tipo de Viagem</ion-label>
         <ion-select [(ngModel)]="Rota.tipoRota">
-          <ion-option *ngFor="let rota of tipo_rota">{{rota.descricao}}</ion-option>
+          <ion-option *ngFor="let rota of tipo_rota" value="{{rota.id}}">{{rota.descricao}}</ion-option>
         </ion-select>
     </ion-item>
     <ion-item>
@@ -21,14 +21,14 @@
         <ion-input type="time"  [(ngModel)]="Rota.hora"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label inline1>Quantidade de Lugares</ion-label>
+        <ion-label inline>Quantidade de Lugares</ion-label>
         <ion-input type="number" [(ngModel)]="Rota.qtdeLugares"></ion-input>
     </ion-item>
     <ion-list>
       <ion-item>
         <ion-label inline>Origem</ion-label>
-        <ion-select [(ngModel)]="Rota.origem">
-          <ion-option *ngFor="let origem of id_origem">{{origem.id}}</ion-option>
+        <ion-select [(ngModel)]="Rota.origem" placeholder="Origem">
+          <ion-option *ngFor="let origem of id_universidade">{{origem.descricao}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>

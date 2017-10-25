@@ -21,7 +21,8 @@ import {CadastroRota} from '../../providers/cadastro-rota';
 export class CadastroRotaPage {
 
   private tipo_rota:Array<any> = [];
-  private id_origem:Array<any> = [];
+  private id_universidade:Array<any> = [];
+
   Rota = {
     tipoRota: '',
     hora: '',
@@ -36,6 +37,7 @@ export class CadastroRotaPage {
               public http: Http,
               private cadastroRota: CadastroRota) {
       this.getRota();
+      this.getDestUniversidade();
   }
   posts: any;
   
@@ -53,9 +55,10 @@ export class CadastroRotaPage {
       this.tipo_rota = data;
     });  
   }
-  getOrigem(){
-    this.cadastroRota.getOrigem().subscribe(data => {
-      this.id_origem = data;
+  getDestUniversidade(){
+    this.cadastroRota.getDestUniversidade().subscribe(data => {
+      this.id_universidade = data;
+      console.log(this.id_universidade);
     });  
   }
 }

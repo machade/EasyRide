@@ -18,7 +18,7 @@ export class CadastroRota {
     return this.http.get('http://localhost:3000/tipo_rota').map(res => res.json());
   }
 
-  getOrigem(){
-    return this.http.get('http://localhost:3000/origem').map(res => res.json());
+  getDestUniversidade(){
+    return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }
 }
