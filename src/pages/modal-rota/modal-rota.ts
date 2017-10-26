@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import {CadastroRota} from '../../providers/cadastro-rota';
 
 /**
  * Generated class for the ModalRotaPage page.
@@ -24,7 +25,7 @@ export class ModalRotaPage {
   public searchControl: FormControl;
   public zoom: number;
 
-  localStorage = {
+  local = {
     descricao: '',
     localizacao: ''
   }
@@ -38,7 +39,8 @@ export class ModalRotaPage {
               public geolocation: Geolocation,
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private cadastroRota: CadastroRota) {
 
   }
   dismiss() {
@@ -90,17 +92,17 @@ export class ModalRotaPage {
     }
   }
 
-  showRadio() {
+  showAlert() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Confirmar Cadastro');
     alert.setMessage('Insira abaixo a descrição para o novo local a ser cadastrado.');
 
 
     alert.addInput({
+      name:'descricao',
       type: 'text',
       label: '',
       value: '',
-      checked: true
     });
 
     alert.addButton('Cancelar');
@@ -108,13 +110,12 @@ export class ModalRotaPage {
       text: 'Confirmar',
       handler: data => {
         this.dismiss();
-        let localizacao = 'point('+this.latitude+','+this.longitude+')';
-        console.log(localizacao);
+        this.local.localizacao = this.latitude+','+this.longitude;
+        this.local.descricao = data.descricao;
+        this.cadastroRota.postLocal(this.local);
+        console.log(this.local);
       }
     });
     alert.present();
-    console.log(this.longitude);
-    console.log(this.latitude);
-    
   }
 }
