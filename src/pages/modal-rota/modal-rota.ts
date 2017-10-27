@@ -110,10 +110,9 @@ export class ModalRotaPage {
       text: 'Confirmar',
       handler: data => {
         this.dismiss();
-        this.local.localizacao = this.latitude+','+this.longitude;
+        this.local.localizacao = this.latitude+' '+this.longitude;
         this.local.descricao = data.descricao;
         this.cadastroRota.postLocal(this.local);
-        console.log(this.local);
       }
     });
     alert.present();

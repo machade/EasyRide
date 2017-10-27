@@ -22,7 +22,8 @@ export class CadastroRota {
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }
   postLocal(local){
-    return this.http.get('http://localhost:3000//local/novo',local).map(res => res.json());
-  }
-  
+    console.log(local)
+    return this.http.post('http://localhost:3000/local/novo', local).map(res => res.json());
+  } 
 }
+  
