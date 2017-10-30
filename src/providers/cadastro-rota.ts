@@ -23,7 +23,7 @@ export class CadastroRota {
   }
   postLocal(local){
     console.log(local)
-    return this.http.post('http://localhost:3000/local/novo', local).map(res => res.json());
+    return this.http.post('http://localhost:3000/local/novo', local).subscribe(data => console.log(data));
   } 
 }
   
