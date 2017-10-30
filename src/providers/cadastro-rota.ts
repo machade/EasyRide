@@ -21,6 +21,9 @@ export class CadastroRota {
   getDestUniversidade(){
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }
+  getDestUsuario(){
+    return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
+  }
   postLocal(local){
     console.log(local)
     return this.http.post('http://localhost:3000/local/novo', local).subscribe(data => console.log(data));

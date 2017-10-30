@@ -24,22 +24,26 @@
         <ion-label inline>Quantidade de Lugares</ion-label>
         <ion-input type="number" [(ngModel)]="Rota.qtdeLugares"></ion-input>
     </ion-item>
-    <ion-list>
+    <ion-list >
       <ion-item>
         <ion-label inline>Origem</ion-label>
-        <ion-select [(ngModel)]="Rota.origem" placeholder="Origem">
-          <ion-option *ngFor="let origem of id_universidade">{{origem.descricao}}</ion-option>
+        <ion-select [(ngModel)]="Rota.origem" *ngIf="Rota.tipoRota==1" >
+          <ion-option *ngFor="let origem of dest_usuario">{{origem.descricao}}</ion-option>
+        </ion-select>
+        <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==2">
+          <ion-option *ngFor="let destino of dest_universidade">{{destino.descricao}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label inline>Destino</ion-label>
-        <ion-select [(ngModel)]="Rota.destino">
-          <ion-option value="1">Casa</ion-option>
-          <ion-option value="2">Trabalho</ion-option>
-          <ion-option value="3">Casa do amigo</ion-option>
-        </ion-select>
+        <ion-select [(ngModel)]="Rota.origem" *ngIf="Rota.tipoRota==2" >
+            <ion-option *ngFor="let origem of dest_usuario">{{origem.descricao}}</ion-option>
+          </ion-select>
+          <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==1">
+            <ion-option *ngFor="let destino of dest_universidade">{{destino.descricao}}</ion-option>
+          </ion-select>
       </ion-item>
     </ion-list>
     <button ion-button block (click)="insert(Rota)" outline round>Inserir Novo Local</button>
@@ -48,7 +52,7 @@
       <ion-row>
           <ion-col>  
             <div>
-              <button ion-button color="submit" class="texto" outline round>Salvar</button>
+              <button ion-button color="submit" class="texto" outline round (click)="salvar()">Salvar</button>
             </div>
           </ion-col>                  
           <ion-col>  
