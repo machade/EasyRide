@@ -18,7 +18,7 @@
     </ion-item>
     <ion-item>
         <ion-label inline>Horário de saída</ion-label>
-        <ion-input type="time"  [(ngModel)]="Rota.hora"></ion-input>
+        <ion-input type="time"  [(ngModel)]="Rota.previsao"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label inline>Quantidade de Lugares</ion-label>
@@ -26,24 +26,24 @@
     </ion-item>
     <ion-list >
       <ion-item>
-        <ion-label inline>Origem</ion-label>
+        <ion-label floating>Origem</ion-label>
         <ion-select [(ngModel)]="Rota.origem" *ngIf="Rota.tipoRota==1" >
-          <ion-option *ngFor="let origem of dest_usuario">{{origem.descricao}}</ion-option>
+          <ion-option *ngFor="let origem of dest_usuario" value="{{origem.id}}">{{origem.descricao}}</ion-option>
         </ion-select>
-        <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==2">
-          <ion-option *ngFor="let destino of dest_universidade">{{destino.descricao}}</ion-option>
+        <ion-select [(ngModel)]="Rota.origem" *ngIf="Rota.tipoRota==2">
+          <ion-option *ngFor="let origem of dest_universidade" value="{{origem.id}}">{{origem.descricao}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
-        <ion-label inline>Destino</ion-label>
-        <ion-select [(ngModel)]="Rota.origem" *ngIf="Rota.tipoRota==2" >
-            <ion-option *ngFor="let origem of dest_usuario">{{origem.descricao}}</ion-option>
-          </ion-select>
-          <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==1">
-            <ion-option *ngFor="let destino of dest_universidade">{{destino.descricao}}</ion-option>
-          </ion-select>
+        <ion-label floating>Destino</ion-label>
+        <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==2" >
+            <ion-option *ngFor="let destino of dest_usuario" value="{{destino.id}}">{{destino.descricao}}</ion-option>
+        </ion-select>
+        <ion-select [(ngModel)]="Rota.destino" *ngIf="Rota.tipoRota==1">
+          <ion-option *ngFor="let destino of dest_universidade" value="{{destino.id}}">{{destino.descricao}}</ion-option>
+        </ion-select>
       </ion-item>
     </ion-list>
     <button ion-button block (click)="insert(Rota)" outline round>Inserir Novo Local</button>
@@ -52,12 +52,12 @@
       <ion-row>
           <ion-col>  
             <div>
-              <button ion-button color="submit" class="texto" outline round (click)="salvar()">Salvar</button>
+              <button ion-button color="submit" class="texto" outline round (click)="confirmar()">Salvar</button>
             </div>
           </ion-col>                  
           <ion-col>  
             <div >
-              <button ion-button color="cancel" class="texto" outline round>Cancelar</button>
+              <button ion-button color="cancel" class="texto" outline round (click)="Cancelar()">Cancelar</button>
             </div>
            </ion-col> 
       </ion-row>

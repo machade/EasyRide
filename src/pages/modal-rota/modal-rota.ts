@@ -112,7 +112,8 @@ export class ModalRotaPage {
         this.dismiss();
         this.local.localizacao = this.latitude+','+this.longitude;
         this.local.descricao = data.descricao;
-        this.cadastroRota.postLocal(this.local);
+        this.cadastroRota.postLocal(this.local).subscribe(data => {          
+        });       
       }
     });
     alert.present();

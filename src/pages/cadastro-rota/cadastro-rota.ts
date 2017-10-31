@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController, AlertController} from 'ionic-angular';
 import {ModalRotaPage} from '../modal-rota/modal-rota';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
@@ -26,8 +26,9 @@ export class CadastroRotaPage {
   
 
   Rota = {
+    id:null,
     tipoRota: '',
-    hora: '',
+    previsao: '',
     origem:'',
     destino:'',
     qtdeLugares: ''
@@ -37,11 +38,24 @@ export class CadastroRotaPage {
               public navParams: NavParams,
               public modalCtrl: ModalController,
               public http: Http,
-              private cadastroRota: CadastroRota) {
-      this.Rota.tipoRota='1';                
+              private cadastroRota: CadastroRota,
+              public alertCtrl: AlertController) {  
+      this.Rota.tipoRota='1';              
       this.getRota();
       this.getDestUniversidade();
       this.getDestUsuario();
+      let data = navParams.get('data');
+      console.log(data);
+      if (data) {
+        this.Rota = {
+          id: data.id,
+          tipoRota: data.id_TipoRota,
+          previsao: data.previsao,
+          origem: data.id_origem,
+          destino: data.id_destino,
+          qtdeLugares: data.qtdelugar
+        }
+      }
   }
   posts: any;
   
@@ -51,6 +65,9 @@ export class CadastroRotaPage {
 
   insert(){
     let modal =  this.modalCtrl.create(ModalRotaPage);
+    modal.onDidDismiss(data => {
+      this.getDestUsuario();
+    });
     modal.present();
   }
 
@@ -64,12 +81,54 @@ export class CadastroRotaPage {
       this.dest_universidade = data;
     });  
   }
-  getDestUsuario(){
+  getDestUsuario() {
     this.cadastroRota.getDestUsuario().subscribe(data => {
       this.dest_usuario = data;
     });  
   }
-  Salvar(){
+  Salvar() {
+    this.cadastroRota.postRota(this.Rota).subscribe(data =>{
+      
+      const alert = this.alertCtrl.create({
+        title: 'Sucesso',
+        subTitle: 'Rota Cadastrada com Sucesso',
+        buttons: [{
+          text: 'OK',
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }]
+      });
+      alert.present();
+      
+    })
+  }
+  confirmar() {
+    if (this.Rota.id) {
+      this.atualizar();
+    } else {
+      this.Salvar();
+    }
+  }
 
+  atualizar() {
+    this.cadastroRota.updateRota(this.Rota).subscribe(data =>{
+      const alert = this.alertCtrl.create({
+        title: 'Sucesso',
+        subTitle: 'Rota Atualizada com Sucesso',
+        buttons: [{
+          text: 'OK',
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }]
+      });
+      alert.present();
+      
+    })
+  }
+
+  Cancelar() {
+    this.navCtrl.pop();
   }
 }

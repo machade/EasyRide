@@ -5,35 +5,16 @@
   Ionic pages and navigation.
 -->
 <ion-content padding>
-    <ion-card>
-      <ion-card-header inline>
-        Casa
-      </ion-card-header>
+    <ion-card *ngFor="let rota of listaRotas">
       <ion-card-content>
-        <li>Origem: Rua juvenal Wey 300
-        <li>Destino: Uniso - Cidade Universitária
+        <li>Origem: {{rota.descricao_origem}}</li>
+        <li>Destino: {{rota.descricao_destino}}</li>
+        <li>Horario de Saída: {{rota.previsao}}</li>
       <ion-buttons end>
-          <button ion-button color="danger" outline icon-only color="cancel">
+          <button ion-button outline icon-only color="cancel" (click)="Delete(rota.id)">
             <ion-icon name='close' is-active="true"></ion-icon>
           </button>
-          <button ion-button color="danger" outline icon-only color="submit">
-            <ion-icon name='md-create' is-active="true"></ion-icon>
-          </button>
-      </ion-buttons>          
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header inline>
-        Trabalho
-      </ion-card-header>
-      <ion-card-content>
-        <li>Origem: Paulo nascimento 145
-        <li>Destino: Uniso - Cidade Universitária
-      <ion-buttons end>
-          <button ion-button color="danger" outline icon-only color="cancel">
-            <ion-icon name='close' is-active="true"></ion-icon>
-          </button>
-          <button ion-button color="danger" outline icon-only color="submit">
+          <button ion-button  outline icon-only color="submit" (click)="editar(rota)">
             <ion-icon name='md-create' is-active="true"></ion-icon>
           </button>
       </ion-buttons>          

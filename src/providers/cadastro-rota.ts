@@ -14,19 +14,33 @@ export class CadastroRota {
   constructor(public http: Http) {
     console.log('Hello CadastroRota Provider');
   }
-  getRotas(){
+  getRotas() {
     return this.http.get('http://localhost:3000/tipo_rota').map(res => res.json());
   }
 
-  getDestUniversidade(){
+  getListarRotas() {
+    return this.http.get('http://localhost:3000/listarRota').map(res => res.json());
+  }
+
+  getDestUniversidade() {
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }
-  getDestUsuario(){
+  getDestUsuario() {
     return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
   }
-  postLocal(local){
-    console.log(local)
-    return this.http.post('http://localhost:3000/local/novo', local).subscribe(data => console.log(data));
+  postLocal(local) {
+    return this.http.post('http://localhost:3000/local/novo', local);
   } 
+  postRota(Rota) {
+    return this.http.post('http://localhost:3000/rota/novo', Rota);
+  }
+
+  updateRota(Rota) {
+    return this.http.put('http://localhost:3000/rota/update', Rota);
+  }
+
+  deleteRota(id) {
+    return this.http.delete('http://localhost:3000/rota/delete/'+id);
+  }
 }
   
