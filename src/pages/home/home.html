@@ -23,24 +23,6 @@
         </ion-col>  
     </ion-row>
     <ion-row>
-      <ion-col>   
-        <div align="center">
-          <button ion-button color="primary" class="texto" clear round>
-              <ion-icon name="ios-people" color="light"></ion-icon>
-             <br>Contatos
-          </button>       
-        </div>             
-      </ion-col>
-      <ion-col>   
-          <div align="center">
-            <button ion-button color="primary" class="texto"  (click)="goToPesquisaCarona()" clear round>        
-                <ion-icon name="ios-search" color="light"></ion-icon>
-                Procurar<br> Carona        
-            </button>
-          </div>            
-        </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col>
           <div align="center">
             <button ion-button color="primary" class="texto"  (click)="goToLocais()" clear round>        
@@ -49,9 +31,14 @@
             </button>
           </div>
       </ion-col>
-      <ion-col>
-     
-      </ion-col>
+      <ion-col>   
+          <div align="center">
+            <button ion-button color="primary" class="texto"  (click)="goToPesquisaCarona()" clear round>        
+                <ion-icon name="ios-search" color="light"></ion-icon>
+                Procurar<br> Carona        
+            </button>
+          </div>            
+       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content> 

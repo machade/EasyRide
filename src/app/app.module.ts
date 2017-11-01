@@ -20,6 +20,7 @@ import {CadastroRotaPage} from '../pages/cadastro-rota/cadastro-rota';
 import {ModalRotaPage} from '../pages/modal-rota/modal-rota';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-carona';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     Geolocation,
     CadastroRota,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PesquisaCaronaProvider
   ]
 })
 export class AppModule {}
