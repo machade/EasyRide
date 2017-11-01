@@ -41,7 +41,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyD6bNZvN0ku4bjfAbyajAdQJ-6sYBS4XFI",
-      libraries: ["places"]
+      libraries: ["places","geometry"]
     }),
     ReactiveFormsModule
   ],

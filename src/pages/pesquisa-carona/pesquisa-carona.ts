@@ -10,6 +10,7 @@ import { MapsAPILoader } from '@agm/core';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var google: any;
 
 @IonicPage()
 @Component({
@@ -19,28 +20,22 @@ import { MapsAPILoader } from '@agm/core';
 export class PesquisaCaronaPage {
 
   id:'';
-  private localizacao: Array<any> = [];
+  
   private dest_usuario: Array<any> = [];
+  private caronas: Array<any> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public cadRota: CadastroRota, public mapsApiLoader: MapsAPILoader) {
       this.getLocal();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PesquisaCaronaPage');
-  }
-
   getLocal() {
     this.cadRota.getDestUsuario().subscribe(data => {
       this.dest_usuario = data;
-      let local1=  new google.maps.LatLng( this.dest_usuario[0].localizacao.x, this.dest_usuario[0].localizacao.y);
-      let local2=  new google.maps.LatLng( this.dest_usuario[1].localizacao.x, this.dest_usuario[1].localizacao.y) ;
-
-      this.mapsApiLoader.load().then(() => {
-        let dist = google.maps.geometry.spherical.computeDistanceBetween(local1,local2);
-        console.log(dist);
-      });
     });  
+  }
+  getCaronas() {
+    this.cadRota.getRotas().subscribe(data => {
+      this.caronas = data;
+    })
   }
 }
