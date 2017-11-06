@@ -18,10 +18,11 @@ export class PesquisaCaronaProvider {
     return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
   }
   
-  getCaronas() {
-    return this.http.get('http://localhost:3000/ListaCaronas').map(res => res.json());
+  getCaronas(pesq) {
+    return this.http.get('http://localhost:3000/ListaCaronas/'+ pesq.destino+'&&'
+                                                              + pesq.hora1 + '&&'
+                                                              + pesq.hora2).map(res => res.json());
   }
-
   getDestUniversidade() {
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }

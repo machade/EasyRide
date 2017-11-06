@@ -31,27 +31,25 @@ export class GerenciarRotaPage {
 
   getListarRotas() {
     this.cadastroRota.getListarRotas().subscribe(data => {
-      console.log(data);
       this.listaRotas = data;
     })
   }
 
   Delete(id) {
-    this.cadastroRota.deleteRota(id).subscribe(data => {
-      console.log(data);
-      const alert = this.alertCtrl.create({
-        title: 'Sucesso',
-        subTitle: 'Rota excluida com Sucesso',
-        buttons: [{
-          text: 'OK',
-          handler: () => {
-            this.navCtrl.pop();
-          }
-        }]
-      });
-      alert.present();
-      
-    })
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Atenção');
+    alert.setMessage('Confirmar Exclusão de Rota.');
+
+    alert.addButton('Cancelar');
+    alert.addButton({
+      text: 'Confirmar',
+      handler: data => {
+        this.navCtrl.pop();
+        this.cadastroRota.deleteRota(id).subscribe(data => {
+	});
+      }
+    });
+    alert.present();
   }
   editar(rota) {
     this.navCtrl.push(CadastroRotaPage,{data: rota});
