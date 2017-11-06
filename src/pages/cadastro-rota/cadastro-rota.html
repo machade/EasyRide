@@ -11,7 +11,7 @@
 
 <ion-content padding>  
     <ion-item>
-        <ion-label inline>Tipo de Viagem</ion-label>
+        <ion-label floating>Tipo de Viagem</ion-label>
         <ion-select [(ngModel)]="Rota.tipoRota">
           <ion-option *ngFor="let rota of tipo_rota" value="{{rota.id}}">{{rota.descricao}}</ion-option>
         </ion-select>
@@ -23,6 +23,10 @@
     <ion-item>
         <ion-label inline>Quantidade de Lugares</ion-label>
         <ion-input type="number" [(ngModel)]="Rota.qtdeLugares"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Distancia maxima permitida (metros)</ion-label>
+      <ion-input type="number" [(ngModel)]="Rota.distancia"></ion-input>
     </ion-item>
     <ion-list >
       <ion-item>

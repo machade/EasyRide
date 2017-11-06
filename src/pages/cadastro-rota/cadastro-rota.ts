@@ -31,6 +31,7 @@ export class CadastroRotaPage {
     previsao: '',
     origem:'',
     destino:'',
+    distancia:'',
     qtdeLugares: ''
   }
 
@@ -53,6 +54,7 @@ export class CadastroRotaPage {
           previsao: data.previsao,
           origem: data.id_origem,
           destino: data.id_destino,
+          distancia: data.distancia,
           qtdeLugares: data.qtdelugar
         }
       }
