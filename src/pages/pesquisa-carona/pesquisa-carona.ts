@@ -29,11 +29,13 @@ export class PesquisaCaronaPage {
   
   private dest_usuario: Array<any> = [];
   private caronas: Array<any> = [];
+  private caronasftl: Array<any> = [];
   private dest_universidade: Array<any> = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public pesqCarona: PesquisaCaronaProvider, public mapsApiLoader: MapsAPILoader,
+              public pesqCarona: PesquisaCaronaProvider, 
+              public mapsApiLoader: MapsAPILoader,
               public alertCtrl: AlertController) {
       this.getDestUsuario();
       this.getDestUniversidades();
@@ -57,16 +59,44 @@ export class PesquisaCaronaPage {
       this.caronas = data;
     })
   }
+
+  
+  
   procurar() {
-    if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2){
+    this.caronasftl = [];
+    if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2) {
       this.getCaronas();
       this.mapsApiLoader.load().then(() => {
-        let local1 = new google.maps.LatLng (this.dest_usuario[this.index].localizacao.x, this.dest_usuario[this.index].localizacao.y);
-        let local2 = new google.maps.LatLng (this.dest_usuario[this.index].localizacao.x, this.dest_usuario[this.index].localizacao.y);
-        let distancia = google.maps.geometry.spherical.computeDistanceBetween(local1, local2);  
-        console.log(distancia);   
+        this.caronas = this.caronas.map( obj =>{
+          let local1 = new google.maps.LatLng (this.dest_usuario[this.index].localizacao.x, this.dest_usuario[this.index].localizacao.y);
+          let local2 = new google.maps.LatLng (obj.localizacao.x, obj.localizacao.y);
+          let dist = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(local1, local2));
+          return {id:obj.id,
+                  id_usuario:obj.id_usuario,
+                  nome: obj.nome,
+                  id_TipoRota: obj.id_TipoRota,
+                  descricao_TipoRota: obj.descricao_TipoRota,
+                  id_origem: obj.id_origem,
+                  origem: obj.origem,
+                  localizacao: obj.localizacao,
+                  id_destino: obj.id_destino,
+                  destino: obj.destino,
+                  previsao: obj.previsao,
+                  qtdelugar: obj.qtdelugar,
+                  distancia: obj.distancia,
+                  distanciaPonto: dist
+                  }
+        })
+        this.caronasftl = this.caronas.filter( obj => {   
+          if (obj.distanciaPonto <= obj.distancia){
+            return true;
+          } else {
+            return false;
+          }
+        });
+        console.log(this.caronas);
+        console.log(this.caronasftl);
       })
-
     } else {
 
       const alert = this.alertCtrl.create({

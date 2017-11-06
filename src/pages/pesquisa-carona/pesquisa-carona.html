@@ -65,13 +65,13 @@
   </ion-grid> 
 
   <ion-list>
-      <ion-item *ngFor="let carona of caronas">
+      <ion-item *ngFor="let carona of caronasftl">
         <ion-avatar item-start>
           <img src="./assets/img/man.PNG">
         </ion-avatar>
         <h2>{{carona.nome}}</h2>
         <h3>Hora de Saída: {{carona.previsao}}</h3>
-        <h4>Distancia: </h4>
+        <h4>Distancia: {{carona.distanciaPonto}} Metros </h4>
       </ion-item>
   </ion-list>
 </ion-content>
