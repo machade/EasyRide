@@ -17,6 +17,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      if (platform.is('android')) {
+        let funcaoRetorno = (data) => {
+          //storage.set('isAlert', true);
+        }
+        window["plugins"].OneSignal.startInit("d1306049-5b2e-4d40-9625-d16b3a93004c","1074558556657")
+        .handleNotificationOpened(funcaoRetorno).endInit();
+      }
     });
   }
 }

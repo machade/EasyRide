@@ -19,15 +19,24 @@ declare var google: any;
 })
 export class PesquisaCaronaPage {
 
+  date = new Date(); // M-D-YYYY
+  
+   d = this.date.getDate();
+   m = this.date.getMonth() + 1;
+   y = this.date.getFullYear();
+
+  tipo:'';
+
   index:'';
   
   pesquisa={
     destino:'',
     hora1:'',
-    hora2:''
+    hora2:'',
+    dateString:''
   }
-  
   private dest_usuario: Array<any> = [];
+  private tipoRotas: Array<any> = [];
   private caronas: Array<any> = [];
   private caronasftl: Array<any> = [];
   private dest_universidade: Array<any> = [];
@@ -39,6 +48,9 @@ export class PesquisaCaronaPage {
               public alertCtrl: AlertController) {
       this.getDestUsuario();
       this.getDestUniversidades();
+      this.getTipoRotas(); 
+      this.pesquisa.dateString = (this.d <= 9 ? '0' + this.d : this.d) + '-' + (this.m <= 9 ? '0' + this.m : this.m) + '-' + this.y;
+      
   }
 
   getDestUniversidades() {
@@ -54,18 +66,34 @@ export class PesquisaCaronaPage {
     });  
   }
   
-  getCaronas() {
-    this.pesqCarona.getCaronas(this.pesquisa).subscribe(data => {
+  getCaronasIda() {
+    this.pesqCarona.getCaronasIda(this.pesquisa).subscribe(data => {
       this.caronas = data;
     })
   }
 
-  
+  getCaronasVolta() {
+    this.pesqCarona.getCaronasVolta(this.pesquisa).subscribe(data => {
+      this.caronas = data;
+    })
+  }
+
+  getTipoRotas() {
+    this.pesqCarona.getTipoRotas().subscribe(data => {
+      this.tipoRotas = data;
+    })
+  }
   
   procurar() {
-    this.caronasftl = [];
-    if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2) {
-      this.getCaronas();
+
+    if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2 && this.tipo) {
+      if(this.tipo == "1"){
+        this.getCaronasIda();    
+        console.log('ida');    
+      } else {
+        this.getCaronasVolta();
+        console.log('volta'); 
+      }
       this.mapsApiLoader.load().then(() => {
         this.caronas = this.caronas.map( obj =>{
           let local1 = new google.maps.LatLng (this.dest_usuario[this.index].localizacao.x, this.dest_usuario[this.index].localizacao.y);

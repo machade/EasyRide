@@ -24,6 +24,13 @@ export class CadastroRotaPage {
   private dest_universidade:Array<any> = [];
   private dest_usuario:Array<any> = [];
   
+   date = new Date(); // M-D-YYYY
+  
+   d = this.date.getDate();
+   m = this.date.getMonth() + 1;
+   y = this.date.getFullYear();
+  
+  
 
   Rota = {
     id:null,
@@ -32,15 +39,17 @@ export class CadastroRotaPage {
     origem:'',
     destino:'',
     distancia:'',
-    qtdeLugares: ''
+    qtdeLugares: '',
+    dateString:''
   }
-
+  
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public modalCtrl: ModalController,
               public http: Http,
               private cadastroRota: CadastroRota,
               public alertCtrl: AlertController) {  
+      this.Rota.dateString = (this.d <= 9 ? '0' + this.d : this.d) + '-' + (this.m <= 9 ? '0' + this.m : this.m) + '-' + this.y;
       this.Rota.tipoRota='1';              
       this.getRota();
       this.getDestUniversidade();
@@ -55,9 +64,11 @@ export class CadastroRotaPage {
           origem: data.id_origem,
           destino: data.id_destino,
           distancia: data.distancia,
-          qtdeLugares: data.qtdelugar
+          qtdeLugares: data.qtdelugar,
+          dateString: data.dateString
         }
       }
+      console.log(this.Rota.dateString);
   }
   posts: any;
   

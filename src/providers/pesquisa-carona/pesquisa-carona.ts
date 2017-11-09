@@ -14,15 +14,29 @@ export class PesquisaCaronaProvider {
   constructor(public http: Http) {
     console.log('Hello PesquisaCaronaProvider Provider');
   }
+
+  getTipoRotas() {
+    return this.http.get('http://localhost:3000/tipo_rota').map(res => res.json());
+  }
+
   getDestUsuario() {
     return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
   }
   
-  getCaronas(pesq) {
-    return this.http.get('http://localhost:3000/ListaCaronas/'+ pesq.destino+'&&'
+  getCaronasIda(pesq) {
+    return this.http.get('http://localhost:3000/ListaCaronasIda/'+ pesq.destino+'&&'
                                                               + pesq.hora1 + '&&'
-                                                              + pesq.hora2).map(res => res.json());
+                                                              + pesq.hora2 + '&&'
+                                                              + pesq.dateString).map(res => res.json());
   }
+
+  getCaronasVolta(pesq) {
+    return this.http.get('http://localhost:3000/ListaCaronasVolta/'+ pesq.destino+'&&'
+                                                              + pesq.hora1 + '&&'
+                                                              + pesq.hora2 + '&&'
+                                                              + pesq.dateString).map(res => res.json());
+  }
+  
   getDestUniversidade() {
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }

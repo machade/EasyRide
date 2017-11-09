@@ -7,12 +7,23 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col style="height:40px">
+      <ion-col>
+          <ion-list >
+              <ion-item>
+                <ion-label>Tipo de Carona</ion-label>
+                <ion-select [(ngModel)]="tipo">
+                  <ion-option *ngFor="let tipo of tipoRotas" value="{{tipo.id}}">{{tipo.descricao}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
         <ion-list >
           <ion-item>
             <ion-label>Local de Partida</ion-label>
-            <ion-select [(ngModel)]="index">
+            <ion-select [(ngModel)]="index" *ngIf="tipo==1">
               <ion-option *ngFor="let local of dest_usuario ;let i = index" [attr.data-index]="i" value="{{i}}">{{local.descricao}}</ion-option>
+            </ion-select>
+            <ion-select [(ngModel)]="pesquisa.destino" *ngIf="tipo==2">
+              <ion-option *ngFor="let dest of dest_universidade" value="{{dest.id}}">{{dest.descricao}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-list>
@@ -23,8 +34,11 @@
           <ion-list >
               <ion-item>
                 <ion-label>Local de Destino</ion-label>
-                <ion-select [(ngModel)]="pesquisa.destino">
+                <ion-select [(ngModel)]="pesquisa.destino" *ngIf="tipo==1">
                   <ion-option *ngFor="let dest of dest_universidade" value="{{dest.id}}">{{dest.descricao}}</ion-option>
+                </ion-select>
+                <ion-select [(ngModel)]="index" *ngIf="tipo==2">
+                  <ion-option *ngFor="let local of dest_usuario ;let i = index" [attr.data-index]="i" value="{{i}}">{{local.descricao}}</ion-option>
                 </ion-select>
               </ion-item>
             </ion-list>
@@ -41,7 +55,7 @@
               <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="pesquisa.hora1"></ion-datetime>
           </ion-item>
       </ion-col>
-      <ion-col class="teste" col-2>
+      <ion-col class="strong" col-2>
         <ion-label>
           Até:
         </ion-label>
@@ -54,7 +68,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item no-lines>
           <ion-buttons end>
             <button ion-button outline round><ion-icon name="ios-locate-outline"></ion-icon></button>                
             <button ion-button outline round (click)="procurar()"><ion-icon name="ios-search"></ion-icon></button>   
@@ -71,7 +85,7 @@
         </ion-avatar>
         <h2>{{carona.nome}}</h2>
         <h3>Hora de Saída: {{carona.previsao}}</h3>
-        <h4>Distancia: {{carona.distanciaPonto}} Metros </h4>
+        <h4>Distância: {{carona.distanciaPonto}} Metros </h4>
       </ion-item>
   </ion-list>
 </ion-content>
