@@ -40,4 +40,8 @@ export class PesquisaCaronaProvider {
   getDestUniversidade() {
     return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
   }
+
+  postCarona(solicitar) {
+    return this.http.post('http://localhost:3000/carona/novo', solicitar);
+  } 
 }

@@ -20,7 +20,7 @@
           <ion-item>
             <ion-label>Local de Partida</ion-label>
             <ion-select [(ngModel)]="index" *ngIf="tipo==1">
-              <ion-option *ngFor="let local of dest_usuario ;let i = index" [attr.data-index]="i" value="{{i}}">{{local.descricao}}</ion-option>
+              <ion-option *ngFor="let local of dest_usuario" [value]="local">{{local.descricao}}</ion-option>
             </ion-select>
             <ion-select [(ngModel)]="pesquisa.destino" *ngIf="tipo==2">
               <ion-option *ngFor="let dest of dest_universidade" value="{{dest.id}}">{{dest.descricao}}</ion-option>
@@ -38,7 +38,7 @@
                   <ion-option *ngFor="let dest of dest_universidade" value="{{dest.id}}">{{dest.descricao}}</ion-option>
                 </ion-select>
                 <ion-select [(ngModel)]="index" *ngIf="tipo==2">
-                  <ion-option *ngFor="let local of dest_usuario ;let i = index" [attr.data-index]="i" value="{{i}}">{{local.descricao}}</ion-option>
+                  <ion-option *ngFor="let local of dest_usuario" [value]="local">{{local.descricao}}</ion-option>
                 </ion-select>
               </ion-item>
             </ion-list>
@@ -86,6 +86,9 @@
         <h2>{{carona.nome}}</h2>
         <h3>Hora de Saída: {{carona.previsao}}</h3>
         <h4>Distância: {{carona.distanciaPonto}} Metros </h4>
+        <button ion-button item-end outline color="submit" round (click)="SolicitarCarona(carona.id)">
+            <ion-icon name="add" color="submit"></ion-icon>
+        </button>      
       </ion-item>
   </ion-list>
 </ion-content>

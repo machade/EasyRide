@@ -42,7 +42,7 @@ import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-ca
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyD6bNZvN0ku4bjfAbyajAdQJ-6sYBS4XFI",
-      libraries: ["places","geometry"]
+      libraries: ["places","geometry","directions"]
     }),
     ReactiveFormsModule
   ],

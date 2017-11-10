@@ -25,15 +25,21 @@ export class PesquisaCaronaPage {
    m = this.date.getMonth() + 1;
    y = this.date.getFullYear();
 
-  tipo:'';
+  tipo:any;
 
-  index:'';
+  index:any;
   
   pesquisa={
     destino:'',
     hora1:'',
     hora2:'',
     dateString:''
+  }
+
+  Solicitar = {
+    id_usuario:'',
+    id_local:'',
+    id_rota:''
   }
   private dest_usuario: Array<any> = [];
   private tipoRotas: Array<any> = [];
@@ -69,12 +75,14 @@ export class PesquisaCaronaPage {
   getCaronasIda() {
     this.pesqCarona.getCaronasIda(this.pesquisa).subscribe(data => {
       this.caronas = data;
+      this.getRotasMapsApi();
     })
   }
 
   getCaronasVolta() {
     this.pesqCarona.getCaronasVolta(this.pesquisa).subscribe(data => {
       this.caronas = data;
+      this.getRotasMapsApi();
     })
   }
 
@@ -83,48 +91,50 @@ export class PesquisaCaronaPage {
       this.tipoRotas = data;
     })
   }
+
+  getRotasMapsApi() {
+    console.log("maps");
+    this.mapsApiLoader.load().then(() => {
+      this.caronas = this.caronas.map( obj =>{
+        let local1 = new google.maps.LatLng (this.index.localizacao.x, this.index.localizacao.y);
+        let local2 = new google.maps.LatLng (obj.localizacao.x, obj.localizacao.y);
+        let dist = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(local1, local2));
+        return {id:obj.id,
+                id_usuario:obj.id_usuario,
+                nome: obj.nome,
+                id_TipoRota: obj.id_TipoRota,
+                descricao_TipoRota: obj.descricao_TipoRota,
+                id_origem: obj.id_origem,
+                origem: obj.origem,
+                localizacao: obj.localizacao,
+                id_destino: obj.id_destino,
+                destino: obj.destino,
+                previsao: obj.previsao,
+                qtdelugar: obj.qtdelugar,
+                distancia: obj.distancia,
+                distanciaPonto: dist
+                }
+      })
+      this.caronasftl = this.caronas.filter( obj => {   
+        if (obj.distanciaPonto <= obj.distancia){
+          return true;
+        } else {
+          return false;
+        }
+      });
+    })
+  }
   
   procurar() {
 
     if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2 && this.tipo) {
-      if(this.tipo == "1"){
+      if(this.tipo == 1){
         this.getCaronasIda();    
-        console.log('ida');    
+       
       } else {
-        this.getCaronasVolta();
-        console.log('volta'); 
+        this.getCaronasVolta();     
       }
-      this.mapsApiLoader.load().then(() => {
-        this.caronas = this.caronas.map( obj =>{
-          let local1 = new google.maps.LatLng (this.dest_usuario[this.index].localizacao.x, this.dest_usuario[this.index].localizacao.y);
-          let local2 = new google.maps.LatLng (obj.localizacao.x, obj.localizacao.y);
-          let dist = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(local1, local2));
-          return {id:obj.id,
-                  id_usuario:obj.id_usuario,
-                  nome: obj.nome,
-                  id_TipoRota: obj.id_TipoRota,
-                  descricao_TipoRota: obj.descricao_TipoRota,
-                  id_origem: obj.id_origem,
-                  origem: obj.origem,
-                  localizacao: obj.localizacao,
-                  id_destino: obj.id_destino,
-                  destino: obj.destino,
-                  previsao: obj.previsao,
-                  qtdelugar: obj.qtdelugar,
-                  distancia: obj.distancia,
-                  distanciaPonto: dist
-                  }
-        })
-        this.caronasftl = this.caronas.filter( obj => {   
-          if (obj.distanciaPonto <= obj.distancia){
-            return true;
-          } else {
-            return false;
-          }
-        });
-        console.log(this.caronas);
-        console.log(this.caronasftl);
-      })
+      console.log(this.index);
     } else {
 
       const alert = this.alertCtrl.create({
@@ -139,6 +149,28 @@ export class PesquisaCaronaPage {
       alert.present();
 
     }
+  }
+
+  SolicitarCarona(id_rota) {
+    this.Solicitar.id_usuario = '1';
+    this.Solicitar.id_local = this.index.id;
+    this.Solicitar.id_rota = id_rota;
+    console.log(this.Solicitar);
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Confirmar Carona');
+    alert.setMessage('Deseja Enviar Solicitação de Carona?');
+
+    alert.addButton('Cancelar');
+    alert.addButton({
+      text: 'Confirmar',
+      handler: data => {
+        this.pesqCarona.postCarona(this.Solicitar).subscribe( Data => {
+
+        });
+        this.navCtrl.pop();
+      }
+    });
+    alert.present();
   }
 
 

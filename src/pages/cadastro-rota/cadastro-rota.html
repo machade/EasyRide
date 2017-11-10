@@ -16,7 +16,7 @@
           <ion-option *ngFor="let rota of tipo_rota" value="{{rota.id}}">{{rota.descricao}}</ion-option>
         </ion-select>
     </ion-item>
-    <ion-item>
+    <ion-item >
         <ion-label inline>Horário de saída</ion-label>
         <ion-input type="time"  [(ngModel)]="Rota.previsao"></ion-input>
     </ion-item>
