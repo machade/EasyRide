@@ -4,6 +4,7 @@ import {Rotas} from '../rotas/rotas';
 import { PesquisaCaronaPage } from '../pesquisa-carona/pesquisa-carona';
 import { IniciarTrajetoPage } from '../iniciar-trajeto-page/iniciar-trajeto-page';
 import {ModalRotaPage} from '../modal-rota/modal-rota';
+import { GerenciarCaronaPage } from '../gerenciar-carona/gerenciar-carona'
 
 
 @Component({
@@ -33,5 +34,9 @@ export class HomePage {
   goToLocais(){
     let modal =  this.modalCtrl.create(ModalRotaPage);
     modal.present();
+  }
+
+  goToGerenciarCaronas() {
+    this.navCtrl.push(GerenciarCaronaPage);
   }
 }

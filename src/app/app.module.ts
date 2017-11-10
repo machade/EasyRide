@@ -21,6 +21,8 @@ import {ModalRotaPage} from '../pages/modal-rota/modal-rota';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-carona';
+import { GerenciarCaronaPage } from '../pages/gerenciar-carona/gerenciar-carona'
+import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar-carona';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-ca
     ModalRotaPage,
     PesquisaCaronaPage,
     GerenciarRotaPage,
-    IniciarTrajetoPage
+    IniciarTrajetoPage,
+    GerenciarCaronaPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-ca
     ModalRotaPage,
     PesquisaCaronaPage,
     GerenciarRotaPage,
-    IniciarTrajetoPage
+    IniciarTrajetoPage,
+    GerenciarCaronaPage
   ],
   providers: [
     StatusBar,
@@ -66,7 +70,8 @@ import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-ca
     Geolocation,
     CadastroRota,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PesquisaCaronaProvider
+    PesquisaCaronaProvider,
+    GerenciarCaronaProvider
   ]
 })
 export class AppModule {}
