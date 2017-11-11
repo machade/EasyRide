@@ -46,7 +46,7 @@ export class GerenciarRotaPage {
       handler: data => {
         this.navCtrl.pop();
         this.cadastroRota.deleteRota(id).subscribe(data => {
-	});
+      	});
       }
     });
     alert.present();

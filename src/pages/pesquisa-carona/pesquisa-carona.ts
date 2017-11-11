@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { PesquisaCaronaProvider } from '../../providers/pesquisa-carona/pesquisa-carona';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -51,7 +51,9 @@ export class PesquisaCaronaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public pesqCarona: PesquisaCaronaProvider, 
               public mapsApiLoader: MapsAPILoader,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public loadingCtrl: LoadingController) {
+                this.tipo = 1;
       this.getDestUsuario();
       this.getDestUniversidades();
       this.getTipoRotas(); 
@@ -126,8 +128,8 @@ export class PesquisaCaronaPage {
   }
   
   procurar() {
-
     if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2 && this.tipo) {
+      this.presentLoadingDefault();
       if(this.tipo == 1){
         this.getCaronasIda();    
        
@@ -152,7 +154,7 @@ export class PesquisaCaronaPage {
   }
 
   SolicitarCarona(id_rota) {
-    this.Solicitar.id_usuario = '1';
+    this.Solicitar.id_usuario = '7';
     this.Solicitar.id_local = this.index.id;
     this.Solicitar.id_rota = id_rota;
     console.log(this.Solicitar);
@@ -172,6 +174,17 @@ export class PesquisaCaronaPage {
     });
     alert.present();
   }
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      spinner:'dots',
+      content: 'Carregando',
+    });
+  
+    loading.present();
 
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+  }
 
 }

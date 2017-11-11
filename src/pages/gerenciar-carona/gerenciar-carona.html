@@ -13,10 +13,10 @@
           <h2>{{solicitacao.nome}}</h2>
           <h4>Distância: {{solicitacao.Distancia}} Metros </h4>
           <button ion-button item-end clear round>
-              <ion-icon name="close" color="cancel"></ion-icon>
+              <ion-icon name="close" color="cancel" (click)="DeleteSolicitacao(solicitacao)"></ion-icon>
           </button>        
           <button ion-button item-end clear round>
-              <ion-icon name="ios-checkbox-outline" color="submit"></ion-icon>
+              <ion-icon name="ios-checkbox-outline" color="submit" (click)="AceitarCarona(solicitacao)"></ion-icon>
           </button>    
         </ion-item>
     </ion-list>
