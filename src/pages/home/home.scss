@@ -13,6 +13,9 @@ page-home {
         padding: 2% 10% 2% 10%;
         background-color: rgba(0,0,0,.5);
     }   
+    .texto{
+        border-radius: 10px;
+    }
     .texto > .button-inner {
         flex-direction: column;
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

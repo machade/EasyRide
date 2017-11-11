@@ -154,7 +154,7 @@ export class PesquisaCaronaPage {
   }
 
   SolicitarCarona(id_rota) {
-    this.Solicitar.id_usuario = '7';
+    this.Solicitar.id_usuario = '5';
     this.Solicitar.id_local = this.index.id;
     this.Solicitar.id_rota = id_rota;
     console.log(this.Solicitar);

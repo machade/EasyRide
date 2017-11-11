@@ -23,9 +23,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PesquisaCaronaProvider } from '../providers/pesquisa-carona/pesquisa-carona';
 import { GerenciarCaronaPage } from '../pages/gerenciar-carona/gerenciar-carona'
 import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar-carona';
+import { IniciarTrajetoProvider } from '../providers/iniciar-trajeto/iniciar-trajeto';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
+    LoginPage,
     MyApp,
     AboutPage,
     ContactPage,
@@ -51,6 +54,7 @@ import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    LoginPage,
     MyApp,
     AboutPage,
     ContactPage,
@@ -71,7 +75,8 @@ import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar
     CadastroRota,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PesquisaCaronaProvider,
-    GerenciarCaronaProvider
+    GerenciarCaronaProvider,
+    IniciarTrajetoProvider,
   ]
 })
 export class AppModule {}

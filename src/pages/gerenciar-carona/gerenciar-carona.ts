@@ -84,10 +84,13 @@ export class GerenciarCaronaPage {
     this.mapsApiLoader.load().then(() => {
       this.solicitacoes = this.solicitacoes.map( obj =>{
         let local1: any;
+        let tipo: any;
         if (obj.id_TipoRota == 1){
           local1 = new google.maps.LatLng (obj.LocalizacaoOrigem.x, obj.LocalizacaoOrigem.y);
+          tipo = "Ida";
         } else {
           local1 = new google.maps.LatLng (obj.LocalizacaoDestino.x, obj.LocalizacaoDestino.y);
+          tipo = "Volta";
         }
         let local2 = new google.maps.LatLng (obj.LocalCarona.x, obj.LocalCarona.y);
         let dist = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(local1, local2));
@@ -103,7 +106,8 @@ export class GerenciarCaronaPage {
           id_TipoRota: obj.id_TipoRota,
           LocalizacaoOrigem: obj.LocalizacaoOrigem,
           LocalizacaoDestino: obj.LocalizacaoDestino,
-          Distancia: dist
+          Distancia: dist,
+          TipoRota: tipo
         }
       })
     })
@@ -132,7 +136,6 @@ export class GerenciarCaronaPage {
     alert.addButton({
       text: 'Confirmar',
       handler: data => {
-        debugger;
         this.deleteSolicitacao(obj.id);
       }
     });
@@ -140,9 +143,21 @@ export class GerenciarCaronaPage {
   }
 
   VerificarDisponibilidade(obj) {
+    debugger;
       if (this.solicitacao[0].ocupadas < this.solicitacao[0].qtdelugar){
-        this.updateCarona(obj.id);
-        console.log(obj);
+        this.updateCarona(obj);
+      } else {
+        const alert = this.alertCtrl.create({
+          title: 'Atenção',
+          subTitle: 'Nenhuma vaga disponivel para esta viagem!',
+          buttons: [{
+            text: 'OK',
+            handler: () => {
+              this.navCtrl.pop();
+            }
+          }]
+        });
+        alert.present();
       }
   }
 

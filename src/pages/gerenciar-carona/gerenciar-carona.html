@@ -11,6 +11,7 @@
             <img src="./assets/img/man.PNG">
           </ion-avatar>
           <h2>{{solicitacao.nome}}</h2>
+          <h3>Tipo de Viagem: {{solicitacao.TipoRota}}</h3>
           <h4>Distância: {{solicitacao.Distancia}} Metros </h4>
           <button ion-button item-end clear round>
               <ion-icon name="close" color="cancel" (click)="DeleteSolicitacao(solicitacao)"></ion-icon>

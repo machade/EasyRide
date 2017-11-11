@@ -6,16 +6,16 @@
   <ion-grid>
     <ion-row >
       <ion-col>  
-        <div align="center">
-           <button ion-button color="primary" class="texto" (click)="goToRotas()" clear round >
+        <div align="right">
+           <button ion-button color="primary" class="texto" (click)="goToRotas()" clear  >
                <ion-icon name="ios-compass" color="light"></ion-icon>
                <br>Rotas
            </button>      
         </div>
       </ion-col>
       <ion-col>  
-          <div align="center">
-             <button ion-button color="primary" class="texto" (click)="goToIniciarTrajeto()" clear round>
+          <div align="left">
+             <button ion-button color="primary" class="texto" (click)="goToIniciarTrajeto()" clear >
                 <ion-icon name="ios-navigate" color="light"></ion-icon>
                 Iniciar<br>Trajeto
              </button>        
@@ -24,16 +24,17 @@
     </ion-row>
     <ion-row>
       <ion-col>
-          <div align="center">
-            <button ion-button color="primary" class="texto"  (click)="goToLocais()" clear round>        
+          <div align="right">
+            <button ion-button color="primary" class="texto"  (click)="goToLocais()" clear >        
                 <ion-icon name="ios-map-outline" color="light"></ion-icon>
+                <br>
                 Locais        
             </button>
           </div>
       </ion-col>
       <ion-col>   
-          <div align="center">
-            <button ion-button color="primary" class="texto"  (click)="goToPesquisaCarona()" clear round>        
+          <div align="left">
+            <button ion-button color="primary" class="texto"  (click)="goToPesquisaCarona()" clear >        
                 <ion-icon name="ios-search" color="light"></ion-icon>
                 Procurar<br> Carona        
             </button>
@@ -42,8 +43,8 @@
     </ion-row>
     <ion-row>
         <ion-col>
-            <div align="center">
-              <button ion-button color="primary" class="texto"  (click)=" goToGerenciarCaronas()" clear round>        
+            <div align="right">
+              <button ion-button color="primary" class="texto"  (click)=" goToGerenciarCaronas()" clear >        
                   <ion-icon name="ios-clipboard-outline" color="light"></ion-icon>
                   <br>
                   Aprovar   
