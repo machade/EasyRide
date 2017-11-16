@@ -15,16 +15,16 @@
 
   <ion-item>
     <ion-label floating>Usuário</ion-label>
-    <ion-input [(ngModel)]="username" type="text" value=""></ion-input>
+    <ion-input [(ngModel)]="login.email" type="text" ></ion-input>
   </ion-item>
 
   <ion-item>
       <ion-label floating>Senha</ion-label>
-      <ion-input [(ngModel)]="username" type="text" value=""></ion-input>
+      <ion-input [(ngModel)]="login.password" type="password"></ion-input>
   </ion-item>
 </ion-list>
 
-    <button ion-button full round>
+    <button ion-button full round (click)="entrar()">
         Entrar
     </button>
     <button ion-button full clear>

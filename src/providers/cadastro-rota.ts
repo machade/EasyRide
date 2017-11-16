@@ -11,7 +11,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class CadastroRota {
-  url: any= "https://damp-ridge-66483.herokuapp.com/";
+  // url: any= "https://damp-ridge-66483.herokuapp.com/";
+  url: any = "http://localhost:3000/";
+  
   constructor(public http: Http) {
     console.log('Hello CadastroRota Provider');
   }

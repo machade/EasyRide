@@ -27,6 +27,7 @@ import { GerenciarCaronaPage } from '../pages/gerenciar-carona/gerenciar-carona'
 import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar-carona';
 import { IniciarTrajetoProvider } from '../providers/iniciar-trajeto/iniciar-trajeto';
 import { LoginPage } from '../pages/login/login';
+import { LoginProvider } from '../providers/login-provider';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { LoginPage } from '../pages/login/login';
     PesquisaCaronaProvider,
     GerenciarCaronaProvider,
     IniciarTrajetoProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}
