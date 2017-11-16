@@ -10,24 +10,25 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class GerenciarCaronaProvider {
-
+  url: any= "https://damp-ridge-66483.herokuapp.com/";
+  
   constructor(public http: Http) {
     console.log('Hello GerenciarCaronaProvider Provider');
   }
   getCaronasSolicitadas(userID) {
-    return this.http.get('http://localhost:3000/caronas/'+ userID).map(res => res.json());
+    return this.http.get(this.url+'caronas/'+ userID).map(res => res.json());
   }
 
   getDisponibilidade(id_rota) {
-    return this.http.get('http://localhost:3000/disponibilidade/'+ id_rota).map(res => res.json());
+    return this.http.get(this.url+'disponibilidade/'+ id_rota).map(res => res.json());
   }
 
   updateCarona(id) {
-    return this.http.put('http://localhost:3000/carona/update', id);
+    return this.http.put(this.url+'carona/update', id);
   }
 
   deleteCarona(id) {
-    return this.http.delete('http://localhost:3000/carona/delete/'+id);
+    return this.http.delete(this.url+'carona/delete/'+id);
   }
 
 }

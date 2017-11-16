@@ -14,7 +14,11 @@ declare var google: any;
 })
 export class IniciarTrajetoPage {
 
-  
+  origin: any;
+  destination: any;
+  latitude: any;
+  longitude: any;
+
   date = new Date(); // M-D-YYYY
   
    d = this.date.getDate();
@@ -48,6 +52,7 @@ export class IniciarTrajetoPage {
   }
 
   getRotaCarona(carona) {
+    debugger;
     this.incTrajeto.getRotaCarona(carona).subscribe( data => {
       this.RotaCarona = data;
       if(this.RotaCarona){
@@ -59,6 +64,7 @@ export class IniciarTrajetoPage {
   }
 
   getCaronaLocalizacoes(obj) {
+    debugger;
     this.incTrajeto.getCaronaLocalizacoes(obj).subscribe( data => {
       this.Localizacoes = data;
       this.IniciarCarona();
@@ -105,28 +111,9 @@ export class IniciarTrajetoPage {
   }
   
   IniciarCarona() {
-    this.MapsAPILoader.load().then(map => {
-      this.Localizacoes.forEach(obj => {
-        let waypoint = new google.maps.LatLng (obj.localizacao.x, obj.localizacao.y);
-        this.waypoints = waypoint;
-      });
-      var directionsService = new google.maps.DirectionsService;
-      var directionsDisplay = new google.maps.DirectionsRenderer;
-      directionsDisplay.setMap(map);
-      directionsService.route({
-              origin: {lat: this.RotaCarona[0].origem.x, lng: this.RotaCarona[0].origem.y},
-              destination: {lat: this.RotaCarona[0].destino.x, lng: this.RotaCarona[0].destino.y},
-              waypoints: [this.Localizacoes],
-              optimizeWaypoints: true,
-              travelMode: 'DRIVING'
-            }, function(response, status) {
-                        if (status === 'OK') {
-                          directionsDisplay.setDirections(response);
-                        } else {
-                          window.alert('Directions request failed due to ' + status);
-                        }
-      });
-
-});
+    this.latitude = -23.4698525;
+    this.longitude = -47.5760304;
+    this.origin= {latitude: this.RotaCarona[0].origem.x, longitude: this.RotaCarona[0].origem.y};
+    this.destination = {latitude: this.RotaCarona[0].destino.x, longitude: this.RotaCarona[0].destino.y};
   }
 }

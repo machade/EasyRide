@@ -12,11 +12,6 @@
         <ion-input type="email"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Confirmar E-mail</ion-label>
-        <ion-input type="email"></ion-input>
-      </ion-item>
-    
-      <ion-item>
         <ion-label floating>Tipo de Usuário</ion-label>
         <ion-select [(ngModel)]="usuario">
           <ion-option value="p">Passageiro</ion-option>
@@ -32,8 +27,7 @@
       <ion-item>
         <ion-label floating>Campus</ion-label>
         <ion-select [(ngModel)]="campus">
-          <ion-option value="c">Cidade Universitária</ion-option>
-          <ion-option value="t">Trujilo</ion-option>
+          <ion-option *ngFor="let universidade of Universidades">{{universidade.descricao}}</ion-option>
         </ion-select>
       </ion-item>
 

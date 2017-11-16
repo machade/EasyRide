@@ -24,8 +24,16 @@
 
 <ion-content padding>
     <div class="form-group" align="justify">
-        <input placeholder="Procurar por local" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="input-maps form-control" #search>
-        <button ion-button (click)="setCurrentPosition()" outline round><ion-icon name="ios-locate-outline" class="currentLocation"></ion-icon></button>                
+        <ion-grid>
+            <ion-row>
+                <ion-col col-8>
+                    <input placeholder="Procurar por local" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="input-maps form-control" #search>
+                </ion-col>
+                <ion-col col-4>
+                    <button ion-button (click)="setCurrentPosition()" outline round><ion-icon name="ios-locate-outline" class="currentLocation"></ion-icon></button>                                        
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </div>
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>

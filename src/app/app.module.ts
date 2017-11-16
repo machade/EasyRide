@@ -8,6 +8,8 @@ import {CadastroRota} from '../providers/cadastro-rota';
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DirectionsMapDirective } from '../providers/DirectionsMapDirective';
+
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -28,6 +30,7 @@ import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
+    DirectionsMapDirective,
     LoginPage,
     MyApp,
     AboutPage,

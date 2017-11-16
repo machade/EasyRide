@@ -154,7 +154,7 @@ export class PesquisaCaronaPage {
   }
 
   SolicitarCarona(id_rota) {
-    this.Solicitar.id_usuario = '5';
+    this.Solicitar.id_usuario = '2';
     this.Solicitar.id_local = this.index.id;
     this.Solicitar.id_rota = id_rota;
     console.log(this.Solicitar);
@@ -167,9 +167,8 @@ export class PesquisaCaronaPage {
       text: 'Confirmar',
       handler: data => {
         this.pesqCarona.postCarona(this.Solicitar).subscribe( Data => {
-
         });
-        this.navCtrl.pop();
+        this.SolicitacaoEnviada();
       }
     });
     alert.present();
@@ -186,5 +185,17 @@ export class PesquisaCaronaPage {
       loading.dismiss();
     }, 5000);
   }
-
+  SolicitacaoEnviada() {
+    const alert = this.alertCtrl.create({
+      title: 'Sucesso',
+      subTitle: 'Solicitação enviada com sucesso',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }]
+    });
+    alert.present();
+  }
 }

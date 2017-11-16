@@ -9,38 +9,40 @@ import 'rxjs/add/operator/map';
   and Angular DI.
 */
 @Injectable()
-export class CadastroRota {
 
+export class CadastroRota {
+  url: any= "https://damp-ridge-66483.herokuapp.com/";
   constructor(public http: Http) {
     console.log('Hello CadastroRota Provider');
   }
   getRotas() {
-    return this.http.get('http://localhost:3000/tipo_rota').map(res => res.json());
+    return this.http.get(this.url+'tipo_rota').map(res => res.json());
   }
 
   getListarRotas() {
-    return this.http.get('http://localhost:3000/listarRota').map(res => res.json());
+    return this.http.get(this.url+'listarRota').map(res => res.json());
   }
 
   getDestUniversidade() {
-    return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
+    return this.http.get(this.url+'dest_universidade').map(res => res.json());
   }
   getDestUsuario() {
-    return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
+    return this.http.get(this.url+'dest_usuario').map(res => res.json());
   }
   postLocal(local) {
-    return this.http.post('http://localhost:3000/local/novo', local);
+    return this.http.post(this.url+'local/novo', local);
   } 
   postRota(Rota) {
-    return this.http.post('http://localhost:3000/rota/novo', Rota);
+    return this.http.post(this.url+'rota/novo', Rota);
   }
 
   updateRota(Rota) {
-    return this.http.put('http://localhost:3000/rota/update', Rota);
+    return this.http.put(this.url+'rota/update', Rota);
   }
 
   deleteRota(id) {
-    return this.http.delete('http://localhost:3000/rota/delete/'+id);
+    debugger;
+    return this.http.delete(this.url+'rota/delete/'+id);
   }
 }
   

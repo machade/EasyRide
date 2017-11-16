@@ -11,37 +11,39 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PesquisaCaronaProvider {
 
+  url: any= "https://damp-ridge-66483.herokuapp.com/"
+
   constructor(public http: Http) {
     console.log('Hello PesquisaCaronaProvider Provider');
   }
 
   getTipoRotas() {
-    return this.http.get('http://localhost:3000/tipo_rota').map(res => res.json());
+    return this.http.get(this.url+'tipo_rota').map(res => res.json());
   }
 
   getDestUsuario() {
-    return this.http.get('http://localhost:3000/dest_usuario').map(res => res.json());
+    return this.http.get(this.url+'dest_usuario').map(res => res.json());
   }
   
   getCaronasIda(pesq) {
-    return this.http.get('http://localhost:3000/ListaCaronasIda/'+ pesq.destino+'&&'
+    return this.http.get(this.url+'ListaCaronasIda/'+ pesq.destino+'&&'
                                                               + pesq.hora1 + '&&'
                                                               + pesq.hora2 + '&&'
                                                               + pesq.dateString).map(res => res.json());
   }
 
   getCaronasVolta(pesq) {
-    return this.http.get('http://localhost:3000/ListaCaronasVolta/'+ pesq.destino+'&&'
+    return this.http.get(this.url+'ListaCaronasVolta/'+ pesq.destino+'&&'
                                                               + pesq.hora1 + '&&'
                                                               + pesq.hora2 + '&&'
                                                               + pesq.dateString).map(res => res.json());
   }
   
   getDestUniversidade() {
-    return this.http.get('http://localhost:3000/dest_universidade').map(res => res.json());
+    return this.http.get(this.url+'dest_universidade').map(res => res.json());
   }
 
   postCarona(solicitar) {
-    return this.http.post('http://localhost:3000/carona/novo', solicitar);
+    return this.http.post(this.url+'carona/novo', solicitar);
   } 
 }
