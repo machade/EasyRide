@@ -28,6 +28,8 @@ import { GerenciarCaronaProvider } from '../providers/gerenciar-carona/gerenciar
 import { IniciarTrajetoProvider } from '../providers/iniciar-trajeto/iniciar-trajeto';
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login-provider';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { LocalStorageCustom } from '../services/LocalStorageCustom';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,10 @@ import { LoginProvider } from '../providers/login-provider';
   imports: [
     BrowserModule,
     HttpModule,
+    LocalStorageModule.withConfig({
+      prefix: 'easyrideapp',
+      storageType: 'localStorage'
+    }),
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyD6bNZvN0ku4bjfAbyajAdQJ-6sYBS4XFI",
@@ -81,7 +87,8 @@ import { LoginProvider } from '../providers/login-provider';
     PesquisaCaronaProvider,
     GerenciarCaronaProvider,
     IniciarTrajetoProvider,
-    LoginProvider
+    LoginProvider,
+    LocalStorageCustom
   ]
 })
 export class AppModule {}

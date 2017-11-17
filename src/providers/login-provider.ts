@@ -19,6 +19,7 @@ export class LoginProvider {
   }
 
   postLogin(login) {
+    debugger;
     return this.http.post(this.url+'login', login);
   } 
 

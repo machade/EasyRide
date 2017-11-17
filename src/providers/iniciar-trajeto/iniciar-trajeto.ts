@@ -20,12 +20,11 @@ export class IniciarTrajetoProvider {
 
   getRotaCarona(pesq) {
     return this.http.get(this.url+'RotaCarona/'+ pesq.id_usuario+'&&'
-                                                            + pesq.id_TipoRota + '&&'
-                                                            + pesq.dateString ).map(res => res.json());
+                                               + pesq.id_TipoRota + '&&'
+                                               + pesq.dateString ).map(res => res.json());
   }
 
   getCaronaLocalizacoes(carona) {
-    debugger;
     return this.http.get(this.url+'CaronaLocalizacoes/'+ carona[0].id_rota).map(res => res.json());
   }
 

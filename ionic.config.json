@@ -1,8 +1,6 @@
 {
   "name": "EasyRide",
   "app_id": "",
-  "typescript": true,
-  "v2": true,
   "integrations": {
     "cordova": {}
   },

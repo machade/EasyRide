@@ -18,6 +18,7 @@ export class IniciarTrajetoPage {
   destination: any;
   latitude: any;
   longitude: any;
+  waypoint:any;
 
   date = new Date(); // M-D-YYYY
   
@@ -52,7 +53,6 @@ export class IniciarTrajetoPage {
   }
 
   getRotaCarona(carona) {
-    debugger;
     this.incTrajeto.getRotaCarona(carona).subscribe( data => {
       this.RotaCarona = data;
       if(this.RotaCarona){
@@ -64,9 +64,17 @@ export class IniciarTrajetoPage {
   }
 
   getCaronaLocalizacoes(obj) {
-    debugger;
     this.incTrajeto.getCaronaLocalizacoes(obj).subscribe( data => {
       this.Localizacoes = data;
+      this.Localizacoes.forEach( (obj) =>{
+        debugger; 
+        if(this.waypoint){
+          this.waypoint = this.waypoint +'|' + obj.localizacao.x+' '+obj.localizacao.y;
+        } else {
+          this.waypoint =  obj.localizacao.x+' '+obj.localizacao.y;
+        }      
+        console.log(this.waypoint);
+      })
       this.IniciarCarona();
     })
   }
@@ -111,9 +119,20 @@ export class IniciarTrajetoPage {
   }
   
   IniciarCarona() {
-    this.latitude = -23.4698525;
-    this.longitude = -47.5760304;
-    this.origin= {latitude: this.RotaCarona[0].origem.x, longitude: this.RotaCarona[0].origem.y};
-    this.destination = {latitude: this.RotaCarona[0].destino.x, longitude: this.RotaCarona[0].destino.y};
+    debugger;
+    this.origin = this.RotaCarona[0].origem.x + ' ' + this.RotaCarona[0].origem.y;
+    this.destination = this.RotaCarona[0].destino.x +' '+this.RotaCarona[0].destino.y;
+    let link;
+    if(this.Localizacoes.length < 0 ) {
+      link = "https://www.google.com/maps/dir/?api=1&origin="+this.origin+"&destination="+this.destination+"&travelmode=driving&dir_action=navigate";
+    } else {
+      link = "https://www.google.com/maps/dir/?api=1&origin="+this.origin+"&destination="+this.destination+"&waypoints="+this.waypoint+"&travelmode=driving&dir_action=navigate";      
+    }
+    window.location.href=link;
+    // waypoints=-23.519293	-47.46261179999999|-23.494848	-47.464567&
+  }
+
+  href() {
+    window.location.href="https://www.google.com/maps/dir/?api=1&origin=-23.499824	-47.398534&destination=-23.5355275	-47.4639399&waypoints=-23.519293	-47.46261179999999|-23.494848	-47.464567&travelmode=driving&dir_action=navigate";
   }
 }

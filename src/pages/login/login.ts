@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login-provider';
 import { TabsPage } from '../tabs/tabs';
-import { LocalStorageCustom } from '../../services/localStorageCustom';
+// import { LocalStorageCustom } from '../../services/localStorageCustom';
 
 
 /**
@@ -25,16 +25,17 @@ export class LoginPage {
   }
   resposta: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public loginP: LoginProvider, public alertCtrl: AlertController,) {
+              public loginP: LoginProvider, public alertCtrl: AlertController,
+              // public localStg: LocalStorageCustom
+            ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-
+  
   postLogin(obj) {
     this.loginP.postLogin(obj).subscribe( data => {
-      debugger;
       this.resposta = data;
       console.log(this.resposta);
       if (this.resposta.status == 204) {
@@ -50,13 +51,12 @@ export class LoginPage {
         alert.present();
       } else if (this.resposta.status == 200) {
         this.navCtrl.push(TabsPage);
-        
       }
     })
   }
 
   entrar() {
     console.log(this.login);
-    this.postLogin(this.login);
+    this.postLogin(this.login);    
   }
 }
