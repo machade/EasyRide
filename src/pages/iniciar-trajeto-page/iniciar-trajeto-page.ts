@@ -2,6 +2,8 @@ import { Component, Directive,  Input } from '@angular/core';
 import { NavController, NavParams,AlertController } from 'ionic-angular';
 import { MapsAPILoader } from '@agm/core';
 import { IniciarTrajetoProvider } from '../../providers/iniciar-trajeto/iniciar-trajeto';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 
 declare var google: any;
 
@@ -38,12 +40,12 @@ export class IniciarTrajetoPage {
 
   private RotaCarona: Array <any>;
   private Localizacoes: Array <any>;
-  private waypoints: Array <any>;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public alertCtrl: AlertController,
               private MapsAPILoader: MapsAPILoader,
-              private incTrajeto: IniciarTrajetoProvider) {
+              private incTrajeto: IniciarTrajetoProvider,
+              private localStorageService: LocalStorageService) {
     this.pesq.dateString = (this.d <= 9 ? '0' + this.d : this.d) + '-' + (this.m <= 9 ? '0' + this.m : this.m) + '-' + this.y;
   }
 
@@ -55,10 +57,21 @@ export class IniciarTrajetoPage {
   getRotaCarona(carona) {
     this.incTrajeto.getRotaCarona(carona).subscribe( data => {
       this.RotaCarona = data;
-      if(this.RotaCarona){
+      debugger;
+      if(this.RotaCarona.length !=0) {
         this.getCaronaLocalizacoes(this.RotaCarona);
-      } else{
-        console.log('Não existe carona')
+      } else {
+          let alert = this.alertCtrl.create();
+          alert.setTitle('Atenção');
+          alert.setMessage('Não há carona cadastrada para este tipo de viagem');
+      
+          alert.addButton({
+            text: 'Ok',
+            handler: data => {
+              this.navCtrl.pop();
+            }
+          });
+          alert.present();
       }
     })
   }
@@ -107,13 +120,12 @@ export class IniciarTrajetoPage {
   }
 
   iniciar(tipo) {
+    this.pesq.id_usuario = this.localStorageService.get<string>("id");    
     if(tipo = 1){
       this.pesq.id_TipoRota = '1';
-      this.pesq.id_usuario = '3';
       this.getRotaCarona(this.pesq);
     }else {
       this.pesq.id_TipoRota = '2';
-      this.pesq.id_usuario = '3';
       this.getRotaCarona(this.pesq);
     }
   }

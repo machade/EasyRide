@@ -5,6 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import {CadastroRota} from '../../providers/cadastro-rota';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 /**
  * Generated class for the ModalRotaPage page.
@@ -27,7 +28,8 @@ export class ModalRotaPage {
 
   local = {
     descricao: '',
-    localizacao: ''
+    localizacao: '',
+    userID:'',
   }
 
   @ViewChild("search")
@@ -40,7 +42,8 @@ export class ModalRotaPage {
               private mapsAPILoader: MapsAPILoader,
               private ngZone: NgZone,
               public alertCtrl: AlertController,
-              private cadastroRota: CadastroRota) {
+              private cadastroRota: CadastroRota,
+              private localStorageService: LocalStorageService) {
 
   }
   dismiss() {
@@ -112,6 +115,7 @@ export class ModalRotaPage {
         this.dismiss();
         this.local.localizacao = this.latitude+','+this.longitude;
         this.local.descricao = data.descricao;
+        this.local.userID = this.localStorageService.get<string>("id");
         this.cadastroRota.postLocal(this.local).subscribe(data => {          
         });       
       }

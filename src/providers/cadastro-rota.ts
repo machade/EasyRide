@@ -11,8 +11,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class CadastroRota {
-  // url: any= "https://damp-ridge-66483.herokuapp.com/";
-  url: any = "http://localhost:3000/";
+  url: any= "https://damp-ridge-66483.herokuapp.com/";
+  // url: any = "http://localhost:3000/";
   
   constructor(public http: Http) {
     console.log('Hello CadastroRota Provider');
@@ -21,15 +21,15 @@ export class CadastroRota {
     return this.http.get(this.url+'tipo_rota').map(res => res.json());
   }
 
-  getListarRotas() {
-    return this.http.get(this.url+'listarRota').map(res => res.json());
+  getListarRotas(userID) {
+    return this.http.get(this.url+'listarRota/' + userID).map(res => res.json());
   }
 
   getDestUniversidade() {
     return this.http.get(this.url+'dest_universidade').map(res => res.json());
   }
-  getDestUsuario() {
-    return this.http.get(this.url+'dest_usuario').map(res => res.json());
+  getDestUsuario(userID) {
+    return this.http.get(this.url+'dest_usuario/'+ userID).map(res => res.json());
   }
   postLocal(local) {
     return this.http.post(this.url+'local/novo', local);

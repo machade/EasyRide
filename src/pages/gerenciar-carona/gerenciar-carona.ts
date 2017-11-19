@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,LoadingController, AlertController 
 import { GerenciarCaronaProvider } from '../../providers/gerenciar-carona/gerenciar-carona';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 
 /**
@@ -24,13 +25,11 @@ export class GerenciarCaronaPage {
   solicitacao = { ocupadas:'',
                   qtdelugar:''}
   
-  userID = '3';
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public grcCarona: GerenciarCaronaProvider,
               public mapsApiLoader: MapsAPILoader,public loadingCtrl: LoadingController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController, private localStorageService: LocalStorageService) {
     this.presentLoadingDefault();
-    this.getCaronasSolicitadas(this.userID);
+    this.getCaronasSolicitadas(this.localStorageService.get<string>("id"));
   }
 
   ionViewDidLoad() {

@@ -5,6 +5,8 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import {CadastroRota} from '../../providers/cadastro-rota';
 import { NgIf } from '@angular/common';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 
 /**
  * Generated class for the CadastroRotaPage page.
@@ -34,6 +36,7 @@ export class CadastroRotaPage {
 
   Rota = {
     id:null,
+    userID:'',
     tipoRota: '',
     previsao: '',
     origem:'',
@@ -48,7 +51,8 @@ export class CadastroRotaPage {
               public modalCtrl: ModalController,
               public http: Http,
               private cadastroRota: CadastroRota,
-              public alertCtrl: AlertController) {  
+              public alertCtrl: AlertController,
+              private localStorageService: LocalStorageService) {  
       this.Rota.dateString = (this.d <= 9 ? '0' + this.d : this.d) + '-' + (this.m <= 9 ? '0' + this.m : this.m) + '-' + this.y;
       this.Rota.tipoRota='1';              
       this.getRota();
@@ -59,6 +63,7 @@ export class CadastroRotaPage {
       if (data) {
         this.Rota = {
           id: data.id,
+          userID: data.id_usuario,
           tipoRota: data.id_TipoRota,
           previsao: data.previsao,
           origem: data.id_origem,
@@ -95,11 +100,12 @@ export class CadastroRotaPage {
     });  
   }
   getDestUsuario() {
-    this.cadastroRota.getDestUsuario().subscribe(data => {
+    this.cadastroRota.getDestUsuario(this.localStorageService.get("id")).subscribe(data => {
       this.dest_usuario = data;
     });  
   }
   Salvar() {
+    this.Rota.userID = this.localStorageService.get<string>("id");
     this.cadastroRota.postRota(this.Rota).subscribe(data =>{
       
       const alert = this.alertCtrl.create({

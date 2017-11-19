@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { PesquisaCaronaProvider } from '../../providers/pesquisa-carona/pesquisa-carona';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 /**
  * Generated class for the PesquisaCaronaPage page.
@@ -30,6 +31,7 @@ export class PesquisaCaronaPage {
   index:any;
   
   pesquisa={
+    userID:'',
     destino:'',
     hora1:'',
     hora2:'',
@@ -37,6 +39,7 @@ export class PesquisaCaronaPage {
   }
 
   Solicitar = {
+    userID:'',
     id_usuario:'',
     id_local:'',
     id_rota:''
@@ -52,8 +55,9 @@ export class PesquisaCaronaPage {
               public pesqCarona: PesquisaCaronaProvider, 
               public mapsApiLoader: MapsAPILoader,
               public alertCtrl: AlertController,
-              public loadingCtrl: LoadingController) {
-                this.tipo = 1;
+              public loadingCtrl: LoadingController,
+              private localStorageService: LocalStorageService) {
+      this.tipo = 1;
       this.getDestUsuario();
       this.getDestUniversidades();
       this.getTipoRotas(); 
@@ -69,7 +73,7 @@ export class PesquisaCaronaPage {
 
 
   getDestUsuario() {
-    this.pesqCarona.getDestUsuario().subscribe(data => {
+    this.pesqCarona.getDestUsuario(this.localStorageService.get<string>("id")).subscribe(data => {
       this.dest_usuario = data;
     });  
   }
@@ -130,13 +134,13 @@ export class PesquisaCaronaPage {
   procurar() {
     if(this.index && this.pesquisa.destino && this.pesquisa.hora1 && this.pesquisa.hora2 && this.tipo) {
       this.presentLoadingDefault();
+      this.pesquisa.userID = this.localStorageService.get<string>("id");
       if(this.tipo == 1){
         this.getCaronasIda();    
        
       } else {
         this.getCaronasVolta();     
       }
-      console.log(this.index);
     } else {
 
       const alert = this.alertCtrl.create({
@@ -154,7 +158,7 @@ export class PesquisaCaronaPage {
   }
 
   SolicitarCarona(id_rota) {
-    this.Solicitar.id_usuario = '5';
+    this.Solicitar.id_usuario = this.localStorageService.get<string>("id");
     this.Solicitar.id_local = this.index.id;
     this.Solicitar.id_rota = id_rota;
     console.log(this.Solicitar);

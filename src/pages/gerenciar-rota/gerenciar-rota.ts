@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CadastroRota } from '../../providers/cadastro-rota';
 import { CadastroRotaPage } from '../cadastro-rota/cadastro-rota';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 /**
  * Generated class for the GerenciarRotaPage page.
@@ -22,7 +23,8 @@ export class GerenciarRotaPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public cadastroRota: CadastroRota,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private localStorageService: LocalStorageService) {
     this.getListarRotas();
   }
   ionViewWillEnter(){
@@ -30,7 +32,7 @@ export class GerenciarRotaPage {
   }
 
   getListarRotas() {
-    this.cadastroRota.getListarRotas().subscribe(data => {
+    this.cadastroRota.getListarRotas(this.localStorageService.get<string>("id")).subscribe(data => {
       this.listaRotas = data;
     })
   }
@@ -51,6 +53,7 @@ export class GerenciarRotaPage {
     });
     alert.present();
   }
+  
   editar(rota) {
     this.navCtrl.push(CadastroRotaPage,{data: rota});
   }

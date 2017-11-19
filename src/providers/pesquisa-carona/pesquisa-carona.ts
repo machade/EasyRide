@@ -11,8 +11,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PesquisaCaronaProvider {
 
-  // url: any= "https://damp-ridge-66483.herokuapp.com/"
-  url: any = "http://localhost:3000/";
+  url: any= "https://damp-ridge-66483.herokuapp.com/"
+  // url: any = "http://localhost:3000/";
   
   constructor(public http: Http) {
     console.log('Hello PesquisaCaronaProvider Provider');
@@ -22,22 +22,24 @@ export class PesquisaCaronaProvider {
     return this.http.get(this.url+'tipo_rota').map(res => res.json());
   }
 
-  getDestUsuario() {
-    return this.http.get(this.url+'dest_usuario').map(res => res.json());
+  getDestUsuario(userID) {
+    return this.http.get(this.url+'dest_usuario/' + userID).map(res => res.json());
   }
   
   getCaronasIda(pesq) {
     return this.http.get(this.url+'ListaCaronasIda/'+ pesq.destino+'&&'
                                                               + pesq.hora1 + '&&'
                                                               + pesq.hora2 + '&&'
-                                                              + pesq.dateString).map(res => res.json());
+                                                              + pesq.dateString + '&&'
+                                                              + pesq.userID).map(res => res.json());
   }
 
   getCaronasVolta(pesq) {
     return this.http.get(this.url+'ListaCaronasVolta/'+ pesq.destino+'&&'
                                                               + pesq.hora1 + '&&'
                                                               + pesq.hora2 + '&&'
-                                                              + pesq.dateString).map(res => res.json());
+                                                              + pesq.dateString + '&&'
+                                                              + pesq.userID).map(res => res.json());
   }
   
   getDestUniversidade() {

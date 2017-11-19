@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LoginProvider } from '../../providers/login-provider';
 import { TabsPage } from '../tabs/tabs';
-// import { LocalStorageCustom } from '../../services/localStorageCustom';
+import { LocalStorageService } from 'angular-2-local-storage';
+
 
 
 /**
@@ -26,7 +27,7 @@ export class LoginPage {
   resposta: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginP: LoginProvider, public alertCtrl: AlertController,
-              // public localStg: LocalStorageCustom
+              private localStorageService: LocalStorageService
             ) {
   }
 
@@ -51,6 +52,10 @@ export class LoginPage {
         alert.present();
       } else if (this.resposta.status == 200) {
         this.navCtrl.push(TabsPage);
+        this.localStorageService.set("id",this.resposta.json().resultado.id);
+        this.localStorageService.set("Nome",this.resposta.json().resultado.Nome);
+        this.localStorageService.set("email",this.resposta.json().resultado.email);
+        this.localStorageService.set("tipo",this.resposta.json().resultado.id_tipo);
       }
     })
   }
