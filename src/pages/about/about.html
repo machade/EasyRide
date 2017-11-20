@@ -4,30 +4,26 @@
     
       <ion-item>
         <ion-label floating>Nome</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text"  [(ngModel)]="usuario.nome"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>E-mail</ion-label>
-        <ion-input type="email"></ion-input>
-      </ion-item>
-      <ion-item>
         <ion-label floating>Tipo de Usuário</ion-label>
-        <ion-select [(ngModel)]="usuario">
-          <ion-option value="p">Passageiro</ion-option>
-          <ion-option value="m">Motorista</ion-option>
+        <ion-select  [(ngModel)]="usuario.tipo">
+          <ion-option value="2">Passageiro</ion-option>
+          <ion-option value="1">Motorista</ion-option>
         </ion-select>
       </ion-item>
     
       <ion-item>
         <ion-label floating>CNH</ion-label>
-        <ion-input type="number"></ion-input>
+        <ion-input type="number" [(ngModel)]="usuario.cnh"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Campus</ion-label>
-        <ion-select [(ngModel)]="campus">
-          <ion-option *ngFor="let universidade of Universidades">{{universidade.descricao}}</ion-option>
+        <ion-select [(ngModel)]="usuario.campus">
+          <ion-option *ngFor="let universidade of Universidades" value="{{universidade.id}}">{{universidade.descricao}}</ion-option>
         </ion-select>
       </ion-item>
 

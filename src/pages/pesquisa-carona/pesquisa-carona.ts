@@ -45,6 +45,7 @@ export class PesquisaCaronaPage {
     id_rota:''
   }
   private dest_usuario: Array<any> = [];
+  private idFromRota: Array<any> = [];  
   private tipoRotas: Array<any> = [];
   private caronas: Array<any> = [];
   private caronasftl: Array<any> = [];
@@ -99,7 +100,6 @@ export class PesquisaCaronaPage {
   }
 
   getRotasMapsApi() {
-    console.log("maps");
     this.mapsApiLoader.load().then(() => {
       this.caronas = this.caronas.map( obj =>{
         let local1 = new google.maps.LatLng (this.index.localizacao.x, this.index.localizacao.y);
@@ -161,7 +161,6 @@ export class PesquisaCaronaPage {
     this.Solicitar.id_usuario = this.localStorageService.get<string>("id");
     this.Solicitar.id_local = this.index.id;
     this.Solicitar.id_rota = id_rota;
-    console.log(this.Solicitar);
     let alert = this.alertCtrl.create();
     alert.setTitle('Confirmar Carona');
     alert.setMessage('Deseja Enviar Solicitação de Carona?');
@@ -173,6 +172,7 @@ export class PesquisaCaronaPage {
         this.pesqCarona.postCarona(this.Solicitar).subscribe( Data => {
         });
         this.SolicitacaoEnviada();
+        this.BuildNotification();
       }
     });
     alert.present();
@@ -201,5 +201,26 @@ export class PesquisaCaronaPage {
       }]
     });
     alert.present();
+  }
+
+  BuildNotification() {
+    this.pesqCarona.getDispositivo(this.Solicitar.id_rota).subscribe(data => {
+      debugger;      
+      this.idFromRota = data;
+      var msg = { 
+        contents: {
+          en: "Nova Solicitação de Carona"
+        },
+        include_player_ids: [this.idFromRota[0].dispositivo]
+      }
+      window["plugins"].OneSignal.postNotification(msg,
+        successResponse => {
+          // Sucesso
+        },
+        erro => {
+          // Erro
+        }
+      );
+    })
   }
 }

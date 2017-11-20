@@ -49,4 +49,8 @@ export class PesquisaCaronaProvider {
   postCarona(solicitar) {
     return this.http.post(this.url+'carona/novo', solicitar);
   } 
+
+  getDispositivo(id_rota) {
+    return this.http.get(this.url+'dispositivoFromRota/'+ id_rota).map(res => res.json());
+  }
 }

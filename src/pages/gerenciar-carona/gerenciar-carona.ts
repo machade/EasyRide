@@ -22,6 +22,8 @@ declare var google: any;
 export class GerenciarCaronaPage {
 
   private solicitacoes: Array<any> = [];
+  private idFromCarona: Array<any> = [];
+  
   solicitacao = { ocupadas:'',
                   qtdelugar:''}
   
@@ -49,7 +51,9 @@ export class GerenciarCaronaPage {
       this.VerificarDisponibilidade(obj);
     })
   }
+
   updateCarona(id) {
+    this.BuildNotificationAccept(id);
     this.grcCarona.updateCarona(id).subscribe(Data =>{
       const alert = this.alertCtrl.create({
         title: 'Sucesso',
@@ -136,6 +140,7 @@ export class GerenciarCaronaPage {
       text: 'Confirmar',
       handler: data => {
         this.deleteSolicitacao(obj.id);
+        this.BuildNotificationDenied(obj.id);
       }
     });
     alert.present();
@@ -172,5 +177,47 @@ export class GerenciarCaronaPage {
     setTimeout(() => {
       loading.dismiss();
     }, 5000);
+  }
+
+  BuildNotificationAccept(id) {
+    this.grcCarona.getDispositivoFromCarona(id).subscribe(data => {
+      debugger;      
+      this.idFromCarona = data;
+      var msg = { 
+        contents: {
+          en: "Sua carona foi confirmar, horário previsto de saída: " + this.idFromCarona[0].previsao
+        },
+        include_player_ids: [this.idFromCarona[0].dispositivo]
+      }
+      window["plugins"].OneSignal.postNotification(msg,
+        successResponse => {
+          // Sucesso
+        },
+        erro => {
+          // Erro
+        }
+      );
+    })
+  }
+
+  BuildNotificationDenied(id) {
+    this.grcCarona.getDispositivoFromCarona(id).subscribe(data => {
+      debugger;      
+      this.idFromCarona = data;
+      var msg = { 
+        contents: {
+          en: "Sua carona foi recusada"
+        },
+        include_player_ids: [this.idFromCarona[0].dispositivo]
+      }
+      window["plugins"].OneSignal.postNotification(msg,
+        successResponse => {
+          // Sucesso
+        },
+        erro => {
+          // Erro
+        }
+      );
+    })
   }
 }

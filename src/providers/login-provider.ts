@@ -22,4 +22,8 @@ export class LoginProvider {
     return this.http.post(this.url+'login', login);
   } 
 
+  updateDispositivo(user) {
+    return this.http.put(this.url+'dispositivo/update', user);    
+  }
+
 }

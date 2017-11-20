@@ -135,13 +135,12 @@ export class IniciarTrajetoPage {
     this.origin = this.RotaCarona[0].origem.x + ' ' + this.RotaCarona[0].origem.y;
     this.destination = this.RotaCarona[0].destino.x +' '+this.RotaCarona[0].destino.y;
     let link;
-    if(this.Localizacoes.length < 0 ) {
+    if(this.Localizacoes.length == 0 ) {
       link = "https://www.google.com/maps/dir/?api=1&origin="+this.origin+"&destination="+this.destination+"&travelmode=driving&dir_action=navigate";
     } else {
       link = "https://www.google.com/maps/dir/?api=1&origin="+this.origin+"&destination="+this.destination+"&waypoints="+this.waypoint+"&travelmode=driving&dir_action=navigate";      
     }
     window.location.href=link;
-    // waypoints=-23.519293	-47.46261179999999|-23.494848	-47.464567&
   }
 
   href() {

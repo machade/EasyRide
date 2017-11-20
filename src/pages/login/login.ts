@@ -5,13 +5,7 @@ import { TabsPage } from '../tabs/tabs';
 import { LocalStorageService } from 'angular-2-local-storage';
 
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+ var teste: any = null;
 
 @IonicPage()
 @Component({
@@ -24,6 +18,10 @@ export class LoginPage {
     email:'',
     password:''
   }
+  dados = {
+    id:'',
+    dispositivo:''
+  };
   resposta: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loginP: LoginProvider, public alertCtrl: AlertController,
@@ -51,17 +49,29 @@ export class LoginPage {
         });
         alert.present();
       } else if (this.resposta.status == 200) {
+        debugger;
         this.navCtrl.push(TabsPage);
         this.localStorageService.set("id",this.resposta.json().resultado.id);
         this.localStorageService.set("Nome",this.resposta.json().resultado.Nome);
         this.localStorageService.set("email",this.resposta.json().resultado.email);
         this.localStorageService.set("tipo",this.resposta.json().resultado.id_tipo);
+        this.dados.id = this.localStorageService.get<string>("id"); 
+        this.dados.dispositivo = teste;   
+        this.updateDispositivo();
       }
     })
   }
 
   entrar() {
-    console.log(this.login);
-    this.postLogin(this.login);    
+    window["plugins"].OneSignal.getIds(function(ids) {
+      console.log(ids.userId);
+      teste = ids.userId;
+    });
+    this.postLogin(this.login); 
+  }
+
+  updateDispositivo() {
+    this.loginP.updateDispositivo(this.dados).subscribe(data => {
+    });
   }
 }

@@ -29,6 +29,7 @@ import { IniciarTrajetoProvider } from '../providers/iniciar-trajeto/iniciar-tra
 import { LoginPage } from '../pages/login/login';
 import { LoginProvider } from '../providers/login-provider';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { PerfilProvider } from '../providers/perfil/perfil';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
     PesquisaCaronaProvider,
     GerenciarCaronaProvider,
     IniciarTrajetoProvider,
-    LoginProvider  ]
+    LoginProvider,
+    PerfilProvider  ]
 })
 export class AppModule {}

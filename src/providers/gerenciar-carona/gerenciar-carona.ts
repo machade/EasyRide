@@ -23,6 +23,10 @@ export class GerenciarCaronaProvider {
     return this.http.get(this.url+'disponibilidade/'+ id_rota).map(res => res.json());
   }
 
+  getDispositivoFromCarona(id_rota) {
+    return this.http.get(this.url+'dispositivoFromCarona/'+ id_rota).map(res => res.json());
+  }
+
   updateCarona(id) {
     return this.http.put(this.url+'carona/update', id);
   }

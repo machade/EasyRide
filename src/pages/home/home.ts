@@ -19,7 +19,10 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
               private localStorageService: LocalStorageService) {
-    this.motorista = this.localStorageService.get<string>("id_tipo");
+  }
+  
+  ionViewDidLoad() {
+    this.motorista = this.localStorageService.get<string>("tipo");
   }
 
   goToRotas(){
